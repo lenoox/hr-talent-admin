@@ -1,0 +1,43 @@
+name: hr-talent-admin
+on: push
+jobs:
+  deploy:
+    name: 'Deploy hr-talent'
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/build'
+    env:
+      IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}:latest
+      PROFILE_ACTIVE: prod
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v2'
+      - name: 'Auth'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v0'
+      - name: 'Authorize Docker push'
+        run: 'gcloud auth configure-docker --quiet'
+      - name: 'Build Docker image'
+        run: 'docker build . -t $IMAGE_NAME --build-arg PROFILE_ACTIVE=$PROFILE_ACTIVE'
+      - name: 'Test Docker image'
+        run: 'docker run -d -p 80:80 $IMAGE_NAME'
+      - name: 'Push Docker image'
+        run: 'docker push $IMAGE_NAME'
+      - name: 'Deploy Docker image'
+        run: |
+          gcloud run deploy ${{ secrets.GCP_APP_NAME }} \
+          --image $IMAGE_NAME \
+          --region ${{ secrets.GCP_REGION}} \
+          --platform managed \
+          --min-instances ${{ secrets.GCP_MIN_INSTANCES }} \
+          --max-instances ${{ secrets.GCP_MAX_INSTANCES }} \
+          --concurrency ${{ secrets.GCP_CONCURRENCY }} \
+          --port 80 \
+          --cpu ${{ secrets.GCP_CPU }} \
+          --memory ${{ secrets.GCP_MEMORY }} \
+          --allow-unauthenticated
