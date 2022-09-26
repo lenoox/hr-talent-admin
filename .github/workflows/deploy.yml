@@ -8,6 +8,7 @@ jobs:
     env:
       IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}:latest
       PROFILE_ACTIVE: prod
+      APP_NAME: ${{ secrets.GCP_APP_NAME }}
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -23,13 +24,15 @@ jobs:
       - name: 'Authorize Docker push'
         run: 'gcloud auth configure-docker --quiet'
       - name: 'Build Docker image'
-        run: 'docker build . -t $IMAGE_NAME --build-arg PROFILE_ACTIVE=$PROFILE_ACTIVE'
+        run: 'docker build . -t $IMAGE_NAME \
+          --build-arg PROFILE_ACTIVE=$PROFILE_ACTIVE' \
+          --build-arg APP_NAME=$APP_NAME'
       - name: 'Test Docker image'
         run: 'docker run -d -p 80:80 $IMAGE_NAME'
       - name: 'Push Docker image'
         run: 'docker push $IMAGE_NAME'
-#      - name: Deploy
-#        run: |-
-#          gcloud compute instances update-container ${{ secrets.GCP_APP_NAME }} \
-#            --zone ${{ secrets.INSTANCE_ZONE}} \
-#            --container-image "gcr.io/$PROJECT_ID/$GCE_INSTANCE:prod-$GITHUB_SHA"
+      - name: Deploy
+        run: |-
+          gcloud compute instances update-container ${{ secrets.GCP_APP_NAME }} \
+            --zone ${{ secrets.INSTANCE_ZONE}} \
+            --container-image "gcr.io/$PROJECT_ID/$GCE_INSTANCE:prod-$GITHUB_SHA"
