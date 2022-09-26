@@ -28,16 +28,8 @@ jobs:
         run: 'docker run -d -p 80:80 $IMAGE_NAME'
       - name: 'Push Docker image'
         run: 'docker push $IMAGE_NAME'
-      - name: 'Deploy Docker image'
-        run: |
-          gcloud run deploy ${{ secrets.GCP_APP_NAME }} \
-          --image $IMAGE_NAME \
-          --region ${{ secrets.GCP_REGION}} \
-          --platform managed \
-          --min-instances ${{ secrets.GCP_MIN_INSTANCES }} \
-          --max-instances ${{ secrets.GCP_MAX_INSTANCES }} \
-          --concurrency ${{ secrets.GCP_CONCURRENCY }} \
-          --port 80 \
-          --cpu ${{ secrets.GCP_CPU }} \
-          --memory ${{ secrets.GCP_MEMORY }} \
-          --allow-unauthenticated
+#      - name: Deploy
+#        run: |-
+#          gcloud compute instances update-container ${{ secrets.GCP_APP_NAME }} \
+#            --zone ${{ secrets.INSTANCE_ZONE}} \
+#            --container-image "gcr.io/$PROJECT_ID/$GCE_INSTANCE:prod-$GITHUB_SHA"
