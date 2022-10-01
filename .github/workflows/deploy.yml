@@ -2,7 +2,7 @@ name: hr-talent-admin
 on: push
 jobs:
   deploy:
-    name: 'Deploy hr-talent'
+    name: 'Deploy hr-talent-admin'
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/build'
     env:
