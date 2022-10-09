@@ -1,10 +1,16 @@
-FROM node:lts-bullseye-slim as build
+FROM node:lts-bullseye-slim as development
 WORKDIR /app
 
 RUN npm install -g npm
 COPY package*.json ./
 RUN npm ci
-COPY . ./
+COPY . .
+
+FROM node:lts-bullseye-slim as build
+WORKDIR /app
+COPY package*.json ./
+COPY --from=development /app/node_modules ./node_modules
+COPY . .
 RUN npm run build
 
 FROM nginx:stable
