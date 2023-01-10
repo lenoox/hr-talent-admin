@@ -1,0 +1,39 @@
+@use '@angular/material' as mat;
+@use 'sass:map';
+@import "@angular/material/theming";
+
+@include mat.core();
+
+$app-primary: mat.define-palette(mat.$indigo-palette, 500);
+$app-accent: mat.define-palette(mat.$pink-palette, 500);
+$app-grey: mat.define-palette(mat.$grey-palette, 100, 700);
+
+$app-light-theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $app-primary,
+        accent: $app-accent,
+      ),
+    )
+);
+
+$app-dark-theme: mat.define-dark-theme(
+    (
+      color: (
+        primary: $app-accent,
+        accent: $app-accent,
+      ),
+    )
+);
+
+:root {
+  --bg-color: #{mat.get-color-from-palette($app-grey, 100)};
+  --sidebar-bg-color: #{mat.get-color-from-palette($app-primary, 500)};
+  @include mat.all-component-colors($app-light-theme);
+}
+
+.darkMode {
+  --bg-color: #{mat.get-color-from-palette($app-grey, 700)};
+  --sidebar-bg-color: #{mat.get-color-from-palette($app-primary, 500)};
+  @include mat.all-component-colors($app-dark-theme);
+}
