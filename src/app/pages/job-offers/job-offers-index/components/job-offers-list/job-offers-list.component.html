@@ -1,24 +1,53 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="jobOffersDataSource" class="mat-elevation-z0">
   <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    <th mat-header-cell *matHeaderCellDef> Nr. </th>
+    <td mat-cell *matCellDef="let element let i=index">{{i+1}}</td>
   </ng-container>
 
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    <th mat-header-cell *matHeaderCellDef> Stanowisko </th>
+    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
   </ng-container>
 
   <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef> Weight </th>
-    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    <th mat-header-cell *matHeaderCellDef> Poziom doświadczenia </th>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngFor="let seniority of element.seniorities; let last=last">
+        {{ seniority.name}}{{last?'':', '}}
+      </ng-container>
+  </td>
   </ng-container>
 
   <ng-container matColumnDef="symbol">
-    <th mat-header-cell *matHeaderCellDef> Symbol </th>
-    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    <th mat-header-cell *matHeaderCellDef> Lokalizacja </th>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngFor="let seniority of element.locations; let last=last">
+        {{ seniority.name}}{{last?'':', '}}
+      </ng-container>
+    </td>
   </ng-container>
-
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Lokalizacja </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Akcje dla oferty pracy">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button [routerLink]="['/job-offer','details',element.id]" mat-menu-item>
+          <mat-icon aria-hidden="false" aria-label="Pokaż oferte pracy" fontIcon="visibility"></mat-icon>
+          <span>Pokaż</span>
+        </button>
+        <button [routerLink]="['/job-offer','edit',element.id]" mat-menu-item>
+          <mat-icon aria-hidden="false" aria-label="Edytuj oferte pracy" fontIcon="visibility"></mat-icon>
+          <span>Edytuj</span>
+        </button>
+        <button (click)="delete(element.id)" mat-menu-item>
+          <mat-icon aria-hidden="false" aria-label="Usuń oferte pracy" fontIcon="visibility"></mat-icon>
+          <span>Usuń</span>
+        </button>
+      </mat-menu>
+    </td>
+  </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>

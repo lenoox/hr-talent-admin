@@ -1,4 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {JobOffer} from "../../../../../core/state/job-offer/job-offer";
+import {Observable} from "rxjs";
+import {CdkTableDataSourceInput} from "@angular/cdk/table";
+import {DataSource} from "@angular/cdk/collections";
+import { MatTableDataSource } from '@angular/material/table';
+import {Select, Store} from "@ngxs/store";
+import {JobOfferState} from "../../../../../core/state/job-offer/job-offer.state";
+import {DeleteJobOffer, GetJobOffers, UpdateJobOffer} from "../../../../../core/state/job-offer/job-offer.action";
+
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -24,11 +33,19 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./job-offers-list.component.scss']
 })
 export class JobOffersListComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
-  constructor() { }
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','action'];
+  @Select(JobOfferState.getJobOfferList) jobOffers$!: Observable<JobOffer[]>
+  jobOffersDataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
+
+  constructor(private store:Store) { }
 
   ngOnInit(): void {
+    this.jobOffers$.subscribe((jobOffers)=>{
+      this.jobOffersDataSource = new MatTableDataSource<any>(jobOffers)
+    })
   }
 
+  delete(id: string) {
+    this.store.dispatch(new DeleteJobOffer(id))
+  }
 }

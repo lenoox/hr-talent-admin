@@ -1,1 +1,8 @@
-<p>job-offer-details works!</p>
+{{jobOffer.position}}
+{{jobOffer.offerDescription}}
+<ng-container *ngFor="let seniority of jobOffer.seniorities; let last=last">
+  {{ seniority.name}}{{last?'':', '}}
+</ng-container>
+<ng-container *ngFor="let seniority of jobOffer.locations; let last=last">
+  {{ seniority.name}}{{last?'':', '}}
+</ng-container>

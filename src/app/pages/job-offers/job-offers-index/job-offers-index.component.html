@@ -1,2 +1,7 @@
-<app-job-offers-list></app-job-offers-list>
-<a routerLink="/job-offer/bob">Bob</a>
+<app-page-container title="Oferty pracy">
+  <div class="content">
+    <button type="submit" mat-flat-button color="primary" [routerLink]="['/job-offer','new']">Primary</button>
+    <app-job-offers-list></app-job-offers-list>
+  </div>
+
+</app-page-container>

@@ -8,3 +8,33 @@ body {
   font-family: Roboto,
   "Helvetica Neue", sans-serif;
 }
+.flex {
+  display: flex;
+
+  $justify-positions: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    around: space-around,
+    between: space-between,
+    evenly: space-evenly
+  );
+  $align-positions: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    stretch: stretch,
+    baseline: baseline
+  );
+
+  @mixin just-align($name,$prop,$arr) {
+    @each $mod, $dir in $arr {
+      &-#{$name}-#{$mod} {
+        #{$prop}: #{$dir};
+      }
+    }
+  }
+
+  @include just-align('align','align-items', $align-positions);
+  @include just-align('justify','justify-content', $justify-positions);
+}
