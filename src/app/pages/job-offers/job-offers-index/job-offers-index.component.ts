@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {JobOfferState} from "../../../core/state/job-offer/job-offer.state";
+import {Observable} from "rxjs";
+import {JobOfferResponse} from "../../../core/state/job-offer/job-offer";
+import {Select, Store} from "@ngxs/store";
+import {GetJobOffers} from "../../../core/state/job-offer/job-offer.action";
 
 @Component({
   selector: 'app-job-offers-index',
@@ -6,10 +11,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./job-offers-index.component.scss']
 })
 export class JobOffersIndexComponent implements OnInit {
-
-  constructor() { }
+  @Select(JobOfferState.getJobOfferList) jobOffers$!: Observable<JobOfferResponse[]>
+  constructor(private store:Store) { }
 
   ngOnInit(): void {
+    this.store.dispatch(new GetJobOffers())
   }
-
 }
