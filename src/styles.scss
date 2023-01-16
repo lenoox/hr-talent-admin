@@ -10,7 +10,12 @@ body {
 }
 .flex {
   display: flex;
-
+  $flex-direction: (
+    row: row,
+    row-reverse: row-reverse,
+    column: column,
+    column-reverse: column-reverse,
+  );
   $justify-positions: (
     start: flex-start,
     end: flex-end,
@@ -35,6 +40,10 @@ body {
     }
   }
 
+  @include just-align('direction','flex-direction', $flex-direction);
   @include just-align('align','align-items', $align-positions);
   @include just-align('justify','justify-content', $justify-positions);
+}
+.text-bold{
+  font-weight: 700;
 }

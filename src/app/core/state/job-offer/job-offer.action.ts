@@ -1,4 +1,4 @@
-import {JobOffer} from './job-offer';
+import {JobOfferRequest} from './job-offer';
 
 export class GetJobOffer {
   static readonly type = '[JobOffer] Get'
@@ -13,13 +13,13 @@ export class GetJobOffers {
 export class AddJobOffer {
   static readonly type = '[JobOffer] Add Job Offer';
 
-  constructor(public payload: JobOffer) {
+  constructor(public payload: JobOfferRequest) {
   }
 }
 
 export class UpdateJobOffer {
   static readonly type = '[JobOffer] Update Job Offer'
-  constructor(public payload: JobOffer, public id: string){
+  constructor(public payload: JobOfferRequest, public id: string){
 
   }
 }

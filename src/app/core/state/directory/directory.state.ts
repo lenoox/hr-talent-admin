@@ -1,24 +1,24 @@
 import {Action, Selector, State, StateContext} from "@ngxs/store";
-import {mergeMap, tap} from "rxjs";
-import { GetDirectory} from "./job-offer.action";
+import {forkJoin, tap} from "rxjs";
+import { GetDirectory} from "./directory.action";
 import {Injectable} from "@angular/core";
 import {Seniority} from "../seniority";
 import {Location} from "../location";
 import {DirectoryService} from "../../services/directory.service";
 
 export class DirectoriesStateModel {
-  seniorities?: Seniority[];
-  locations?: Location[];
+  seniorities!: Seniority[];
+  locations!: Location[];
 }
 @State<DirectoriesStateModel>({
-  name: 'Directories',
+  name: 'directories',
   defaults: {
     seniorities: [],
     locations: []
   }
 })
 @Injectable()
-export class JobOfferState {
+export class DirectoryState {
   constructor(private directoryService: DirectoryService) {
   }
 
@@ -33,15 +33,15 @@ export class JobOfferState {
   }
 
   @Action(GetDirectory)
-  getJobOffer({getState,setState}: StateContext<DirectoriesStateModel>){
-    return this.directoryService.fetchSeniorities().pipe(
-      mergeMap(() => this.directoryService.fetchLocalizations()),
-      tap(([seniorities,localizations]: any)=>{
+  getDirectories({getState,setState}: StateContext<DirectoriesStateModel>){
+    return forkJoin([this.directoryService.fetchSeniorities(),
+      this.directoryService.fetchLocations()]).pipe(
+      tap(([seniorities,locations]: any)=>{
       const state = getState();
       setState({
         ...state,
-        seniorities: [...seniorities],
-        locations: [...localizations]
+        seniorities: seniorities,
+        locations: locations
       })
     }))
   }

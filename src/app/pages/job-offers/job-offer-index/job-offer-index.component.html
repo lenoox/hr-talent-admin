@@ -1,7 +1,8 @@
-
 <app-page-container title="Oferty pracy">
+  <span class="action-section">
+    <button type="submit" mat-flat-button color="primary" [routerLink]="['/job-offer','new']">Usuń ofertę</button>
+  </span>
   <div class="content">
     <router-outlet></router-outlet>
   </div>
-
 </app-page-container>

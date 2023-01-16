@@ -9,6 +9,7 @@ import {NgxsModule} from '@ngxs/store';
 import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
 import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 import {JobOfferState} from "./core/state/job-offer/job-offer.state";
+import {DirectoryState} from "./core/state/directory/directory.state";
 @NgModule({
   declarations: [
     AppComponent
@@ -20,7 +21,7 @@ import {JobOfferState} from "./core/state/job-offer/job-offer.state";
     BrowserAnimationsModule,
     CoreModule,
     PagesModule,
-    NgxsModule.forRoot([JobOfferState]),
+    NgxsModule.forRoot([JobOfferState,DirectoryState]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
   ],

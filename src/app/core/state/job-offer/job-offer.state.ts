@@ -1,4 +1,4 @@
-import {JobOffer} from "./job-offer";
+import {JobOfferResponse} from "./job-offer";
 import {Action, Selector, State, StateContext} from "@ngxs/store";
 import {JobOfferService} from "../../services/job-offer.service";
 import {tap} from "rxjs";
@@ -6,8 +6,8 @@ import {AddJobOffer, DeleteJobOffer, GetJobOffer, GetJobOffers, UpdateJobOffer} 
 import {Injectable} from "@angular/core";
 
 export class JobOffersStateModel {
-  jobOffers!: JobOffer[];
-  jobOffer!: JobOffer | null;
+  jobOffers!: JobOfferResponse[];
+  jobOffer!: JobOfferResponse | null;
 }
 @State<JobOffersStateModel>({
   name: 'jobOffers',
@@ -32,7 +32,7 @@ export class JobOfferState {
   }
 
   @Action(GetJobOffer)
-  getJobOffer({getState,setState}: StateContext<JobOffersStateModel>,{ id }: JobOffer){
+  getJobOffer({getState,setState}: StateContext<JobOffersStateModel>,{ id }: JobOfferResponse){
     return this.jobOffer.fetchJobOfferService(id).pipe(tap((result)=>{
       const state = getState();
       setState({

@@ -1,13 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import {Select, Store} from "@ngxs/store";
 import {JobOfferState} from "../../../../../core/state/job-offer/job-offer.state";
-import {Observable, Subscription} from "rxjs";
-import {JobOffer} from "../../../../../core/state/job-offer/job-offer";
-import {ActivatedRoute} from "@angular/router";
-import {AddJobOffer, DeleteJobOffer, GetJobOffer, UpdateJobOffer} from "../../../../../core/state/job-offer/job-offer.action";
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import { Observable, of, Subscription, switchMap, tap} from "rxjs";
+import {JobOfferResponse} from "../../../../../core/state/job-offer/job-offer";
+import {ActivatedRoute, Router} from "@angular/router";
+import {
+  AddJobOffer,
+  DeleteJobOffer,
+  GetJobOffer,
+  UpdateJobOffer
+} from "../../../../../core/state/job-offer/job-offer.action";
+import {FormBuilder, Validators} from "@angular/forms";
 import {Seniority} from "../../../../../core/state/seniority";
 import {Location} from "../../../../../core/state/location";
+import {DirectoryState} from "../../../../../core/state/directory/directory.state";
+import {jobOfferFormToReqest} from "../../../../../shared/mappers/job-offer-mapper";
+import {NotificationService} from "../../../../../core/services/notification.service";
+
 
 @Component({
   selector: 'app-job-offer-edit',
@@ -15,39 +24,41 @@ import {Location} from "../../../../../core/state/location";
   styleUrls: ['./job-offer-edit.component.scss']
 })
 export class JobOfferEditComponent implements OnInit {
-  @Select(JobOfferState.getJobOffer)
-  jobOffer$!: Observable<JobOffer>
+  @Select(JobOfferState.getJobOffer) jobOffer$!: Observable<JobOfferResponse>
+  @Select(DirectoryState.getLocations) locations$!: Observable<Location[]>
+  @Select(DirectoryState.getSeniorities) seniorities$!: Observable<Seniority[]>
 
-  jobOffer!: JobOffer
+  jobOffer!: JobOfferResponse
   routeId!: Subscription;
   id: string = '';
   isEditMode: boolean = false;
-  jobOfferForm = this._formBuilder.group({
-    position: ['',Validators.required],
-    offerDescription: ['',Validators.required],
-    seniorities:  this._formBuilder.group({
-      id: ['',Validators.required]
-    }),
-    locations: this._formBuilder.group({
-      id: ['',Validators.required]
-    }),
-  });
+  jobOfferForm:any;
+
   constructor(private _formBuilder: FormBuilder,
               private store: Store,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router,
+              private notificationService:NotificationService) { }
 
   ngOnInit(): void {
-    this.routeId = this.route.params.subscribe(params => {
-      if(params['state'] === 'edit'){
-        this.isEditMode = true;
-        this.store.dispatch(new GetJobOffer(params['id']))
-        this.id = params['id'];
-      }else{
-        this.isEditMode = false;
+    this.jobOfferForm=this.getForm()
+    this.routeId = this.route?.params.pipe(
+      switchMap((params) => {
+        if(params['state'] === 'edit' && params['id']){
+          this.isEditMode = true;
+          this.id = params['id'];
+          return this.store.dispatch(new GetJobOffer(this.id))
+        } else {
+          this.isEditMode = false;
+          return of(false);
+        }
       }
-    });
-    this.jobOffer$.subscribe((jobOffer: any)=>{
-      this.jobOfferForm.patchValue(jobOffer);
+    ),
+    switchMap(()=>{
+      return this.jobOffer$;
+    }))
+    .subscribe((jobOfferResponse:JobOfferResponse)=> {
+         this.jobOfferForm=this.getForm(jobOfferResponse);
     })
   }
 
@@ -70,16 +81,32 @@ export class JobOfferEditComponent implements OnInit {
   get locations(){
     return this.jobOfferForm.get('locations')
   }
-
-  add(jobOffer: JobOffer) {
-    this.store.dispatch(new AddJobOffer(jobOffer))
+  getForm(data:any=null) {
+    if (!this.isEditMode){
+      data = {position: null, offerDescription: null, seniorities:[],locations:[]}
+    }
+    return this._formBuilder.group({
+      position: [data.position, Validators.required],
+      offerDescription: [data.offerDescription, Validators.required],
+      seniorities: [data.seniorities],
+      locations: [data.locations],
+    });
   }
-
   delete(id: string) {
     this.store.dispatch(new DeleteJobOffer(id))
   }
-
-  onSubmit(data: any) {
-    this.store.dispatch(new UpdateJobOffer(data,this.id))
+  compareWith(jobOffer1: any, jobOffer2: any): boolean {
+    return jobOffer1 && jobOffer2 && jobOffer1.id === jobOffer2.id;
+  }
+  onSubmit(data: JobOfferResponse) {
+    const jobOffer = jobOfferFormToReqest(data);
+    if(this.isEditMode){
+      this.store.dispatch(new UpdateJobOffer(jobOffer, this.id))
+      this.notificationService.notify('Zaktualizowano ofertę')
+    } else {
+      this.store.dispatch(new AddJobOffer(jobOffer));
+      this.notificationService.notify('Dodano ofertę')
+    }
+    this.router.navigate(['/job-offers'])
   }
 }

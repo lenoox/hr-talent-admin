@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import {JobOffer} from "../state/job-offer/job-offer";
 import {HttpClient} from "@angular/common/http";
-import {Directory} from "../state/directory/directory";
 import {Seniority} from "../state/seniority";
 
 @Injectable({
@@ -11,10 +9,10 @@ export class DirectoryService {
   jobOffer = "http://localhost:3000/";
   constructor(private http: HttpClient) { }
 
-  fetchLocalizations() {
-    return this.http.get<Location>(`${this.jobOffer}/directory/localizations`);
+  fetchLocations() {
+    return this.http.get<Location>(`${this.jobOffer}directories/locations`);
   }
   fetchSeniorities() {
-    return this.http.get<Seniority>(`${this.jobOffer}/directory/seniorities`);
+    return this.http.get<Seniority>(`${this.jobOffer}directories/seniorities`);
   }
 }
