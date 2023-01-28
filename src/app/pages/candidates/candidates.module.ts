@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { CandidatesRoutingModule } from './candidates-routing.module';
-import {CandidateIndexModule} from "./candidate-index/candidate-index.module";
-import {CandidatesIndexModule} from "./candidates-index/candidates-index.module";
+import { CandidatesComponent } from './candidates.component';
+import {CandidateDetailsComponent} from "./components/candidate-details/candidate-details.component";
+import {CandidatesListComponent} from "./components/candidates-list/candidates-list.component";
+import {SharedModule} from "../../shared/shared.module";
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    CandidatesComponent,
+    CandidateDetailsComponent,
+    CandidatesListComponent
+  ],
   imports: [
     CommonModule,
     CandidatesRoutingModule,
-    CandidateIndexModule,
-    CandidatesIndexModule
+    SharedModule
   ]
 })
 export class CandidatesModule { }

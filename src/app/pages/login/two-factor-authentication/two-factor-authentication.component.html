@@ -1,0 +1,12 @@
+<ng-container>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Kod autorazacyjny</mat-label>
+    <input matInput #twoFactorAuthenticateCode maxlength="6" [(ngModel)]="code" placeholder="Kod" value="94043">
+    <mat-hint align="end">{{twoFactorAuthenticateCode.value.length}}/6</mat-hint>
+  </mat-form-field>
+  <button class="login-button"
+          type="submit"
+          (click)="twoFactorAuthenticate(twoFactorAuthenticateCode.value)"
+          mat-flat-button
+          color="primary">Wyślij</button>
+</ng-container>

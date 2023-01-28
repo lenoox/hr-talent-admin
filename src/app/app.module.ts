@@ -10,20 +10,20 @@ import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
 import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 import {JobOfferState} from "./core/state/job-offer/job-offer.state";
 import {DirectoryState} from "./core/state/directory/directory.state";
+import {UserState} from "./core/state/user/user.state";
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
-
     AppRoutingModule,
     BrowserAnimationsModule,
-    CoreModule,
-    PagesModule,
-    NgxsModule.forRoot([JobOfferState,DirectoryState]),
+    NgxsModule.forRoot([JobOfferState, DirectoryState, UserState]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
+    CoreModule,
+    PagesModule,
   ],
   exports:[],
   providers: [],
