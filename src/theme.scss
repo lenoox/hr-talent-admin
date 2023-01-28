@@ -28,12 +28,14 @@ $app-dark-theme: mat.define-dark-theme(
 
 :root {
   --bg-color: #{mat.get-color-from-palette($app-grey, 100)};
+  --login-bg-color: #{mat.get-color-from-palette($app-primary, 500)};
   --sidebar-bg-color: #{mat.get-color-from-palette($app-primary, 500)};
   @include mat.all-component-colors($app-light-theme);
 }
 
 .darkMode {
   --bg-color: #{mat.get-color-from-palette($app-grey, 700)};
+  --login-bg-color: #{mat.get-color-from-palette($app-primary, 500)};
   --sidebar-bg-color: #{mat.get-color-from-palette($app-primary, 500)};
   @include mat.all-component-colors($app-dark-theme);
 }

@@ -1,0 +1,28 @@
+<div class="job-offer">
+  <div class="job-offer-group">
+    <div>
+      <span class="text-bold">Stanowisko:</span>
+      <p>{{jobOffer.position}}</p>
+    </div>
+    <div>
+      <span class="text-bold">Lokalizacje:</span>
+      <p>
+        <ng-container *ngFor="let location of jobOffer.locations; let last=last">
+          {{ location.name}}{{last?'':', '}}
+        </ng-container>
+      </p>
+    </div>
+  </div>
+  <div class="job-offer-group">
+    <div>
+      <span class="text-bold">Poziom doświadczenia:</span>
+      <p>
+        <ng-container *ngFor="let seniority of jobOffer.seniorities; let last=last">
+          {{ seniority.name}}{{last?'':', '}}
+        </ng-container>
+      </p>
+    </div>
+  </div>
+  <span class="text-bold">Opis:</span>
+  <p>{{jobOffer.offerDescription}}</p>
+</div>
