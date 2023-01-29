@@ -43,8 +43,9 @@ export class JobOfferState {
   }
 
   @Action(GetJobOffers)
-  getJobOffers({getState,setState}: StateContext<JobOffersStateModel>){
-    return this.jobOffer.fetchJobOffersService().pipe(tap((result)=>{
+  getJobOffers({getState,setState}: StateContext<JobOffersStateModel>,
+               {pageSize, currentPage}:{pageSize:number,currentPage:number}){
+    return this.jobOffer.fetchJobOffersService(pageSize,currentPage).pipe(tap((result)=>{
       const state = getState();
       setState({
         ...state,
@@ -79,13 +80,6 @@ export class JobOfferState {
 
   @Action(DeleteJobOffer)
   deleteJobOffer({getState, setState}: StateContext<JobOffersStateModel>, {id}:DeleteJobOffer){
-    return this.jobOffer.deleteJobOffer(id).pipe(tap(()=>{
-      const state = getState();
-      const jobOffers = state.jobOffers.filter(item => item.id !== id)
-      setState({
-        ...state,
-        jobOffers:jobOffers,
-      })
-    }))
+    return this.jobOffer.deleteJobOffer(id);
   }
 }
