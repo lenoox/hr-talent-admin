@@ -8,6 +8,8 @@ export class GetJobOffer {
 
 export class GetJobOffers {
   static readonly type = '[JobOffer] Get Job Offers'
+  constructor(public pageSize:number, public currentPage:number) {
+  }
 }
 
 export class AddJobOffer {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {JobOfferRequest, JobOfferResponse} from "../state/job-offer/job-offer";
 
 @Injectable({
@@ -9,8 +9,13 @@ export class JobOfferService {
   jobOffer = "http://localhost:3000/";
   constructor(private http: HttpClient) { }
 
-  public fetchJobOffersService(){
-    return this.http.get<JobOfferResponse[]>(`${this.jobOffer}job-offers`);
+  public fetchJobOffersService(pageSize:number, currentPage:number){
+    let params = new HttpParams();
+    params = params.append('limit', pageSize);
+    params = params.append('page', currentPage+1);
+    const requestOptions = { params: params };
+
+    return this.http.get<JobOfferResponse[]>(`${this.jobOffer}job-offers`,requestOptions);
   }
 
   public fetchJobOfferService(id: string){
