@@ -10,3 +10,11 @@ export function jobOfferFormToReqest(jobOfferResponse:JobOfferResponse): JobOffe
     };
     return jobOffer;
 }
+export function jobOfferToList(jobOfferResponse:JobOfferResponse): any {
+  const jobOffer = {
+    ...jobOfferResponse,
+    locations: jobOfferResponse.locations.map(location=>location.name),
+    seniorities: jobOfferResponse.seniorities.map(location=>location.name)
+  };
+  return jobOffer;
+}

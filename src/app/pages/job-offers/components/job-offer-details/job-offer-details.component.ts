@@ -21,16 +21,7 @@ export class JobOfferDetailsComponent implements OnInit {
   constructor(private store: Store, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.routeId = this.route.params.subscribe(params => {
-      this.store.dispatch(new GetJobOffer(params['id']))
-    });
-    this.jobOffer$.subscribe((jobOffer)=>{
-      this.jobOffer=jobOffer;
-    })
+    const jobOfferId = this.route.snapshot.params['id'];
+    this.store.dispatch(new GetJobOffer(jobOfferId));
   }
-
-  ngOnDestroy() {
-    this.routeId.unsubscribe()
-  }
-
 }
