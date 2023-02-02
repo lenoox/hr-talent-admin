@@ -5,16 +5,19 @@ import {Injectable} from "@angular/core";
 import {Seniority} from "../seniority";
 import {Location} from "../location";
 import {DirectoryService} from "../../services/directory.service";
+import {Status} from "../status";
 
 export class DirectoriesStateModel {
   seniorities!: Seniority[];
   locations!: Location[];
+  statuses!: Status[]| undefined;
 }
 @State<DirectoriesStateModel>({
   name: 'directories',
   defaults: {
     seniorities: [],
-    locations: []
+    locations: [],
+    statuses:undefined
   }
 })
 @Injectable()
@@ -24,24 +27,32 @@ export class DirectoryState {
 
   @Selector()
   static getSeniorities(state: DirectoriesStateModel){
-    return state.seniorities
+    return state.seniorities;
   }
 
   @Selector()
   static getLocations(state: DirectoriesStateModel){
-    return state.locations
+    return state.locations;
+  }
+  @Selector()
+  static getStatuses(state: DirectoriesStateModel){
+    return state.statuses;
   }
 
   @Action(GetDirectory)
   getDirectories({getState,setState}: StateContext<DirectoriesStateModel>){
-    return forkJoin([this.directoryService.fetchSeniorities(),
-      this.directoryService.fetchLocations()]).pipe(
-      tap(([seniorities,locations]: any)=>{
+    return forkJoin([
+      this.directoryService.fetchSeniorities(),
+      this.directoryService.fetchLocations(),
+      this.directoryService.fetchStatuses()
+    ]).pipe(
+      tap(([seniorities,locations,statuses]: any)=>{
       const state = getState();
       setState({
         ...state,
         seniorities: seniorities,
-        locations: locations
+        locations: locations,
+        statuses: statuses
       })
     }))
   }

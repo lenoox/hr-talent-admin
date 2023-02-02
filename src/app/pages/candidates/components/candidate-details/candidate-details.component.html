@@ -1,1 +1,33 @@
-<p>candidate-details works!</p>
+<div class="candidate" *ngIf="candidate$ | async; let candidate">
+
+  <form [formGroup]="candidateForm" (ngSubmit)="onSubmit(candidateForm.value)">
+    <div class="candidate-group">
+      <div>
+        <span class="text-bold">Imię i Nazwisko:</span>
+        <p>{{candidate.name}}</p>
+      </div>
+      <div>
+        <span class="text-bold">Stanowisko:</span>
+        <p>{{candidate.position}}</p>
+      </div>
+      <div>
+        <span class="text-bold">Lokalizacje:</span>
+        <p>{{ candidate.locations}}</p>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status" [compareWith]="compareCandidate">
+            <mat-option *ngFor="let status of (statuses$ | async)" [value]="status">{{status.name}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="status?.invalid">Pole wymagane</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="candidateDescription">
+        <span class="text-bold">Opis:</span>
+        <p>{{candidate.aboutMe}}</p>
+      </div>
+    </div>
+    <button type="submit" mat-flat-button color="primary">Wyślij</button>
+  </form>
+</div>

@@ -5,6 +5,7 @@ import { CandidatesComponent } from './candidates.component';
 import {CandidateDetailsComponent} from "./components/candidate-details/candidate-details.component";
 import {CandidatesListComponent} from "./components/candidates-list/candidates-list.component";
 import {SharedModule} from "../../shared/shared.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {SharedModule} from "../../shared/shared.module";
   imports: [
     CommonModule,
     CandidatesRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class CandidatesModule { }

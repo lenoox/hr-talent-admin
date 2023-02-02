@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {JobOfferResponse, Paginated} from "../../../../core/state/job-offer/job-offer";
-import {mergeMap, Observable, tap} from "rxjs";
+import {JobOfferResponse} from "../../../../core/state/job-offer/job-offer";
+import {Observable} from "rxjs";
 import {Select, Store} from "@ngxs/store";
 import {JobOfferState} from "../../../../core/state/job-offer/job-offer.state";
 import {DeleteJobOffer, GetJobOffers} from "../../../../core/state/job-offer/job-offer.action";
+import {Paginated} from "../../../../core/state/paginated";
 
 @Component({
   selector: 'app-job-offers-list',
@@ -27,8 +28,6 @@ export class JobOffersListComponent implements OnInit {
   ngOnInit(): void {
     this.loadJobOffers();
   }
-
-
 
   pageChanged() {
     this.loadJobOffers();

@@ -28,7 +28,7 @@ export class TwoFactorEnabledComponent implements OnInit {
   turnOn2fa(code: string) {
     let user2FARequest = new TurnOn2faRequest(code);
     this.store.dispatch(new TurnOn2fa(user2FARequest)).subscribe(()=>{
-      this.router.navigate(['/code'])
+      this.router.navigate(['/login/code'])
     })
   }
   generate() {
@@ -39,6 +39,6 @@ export class TwoFactorEnabledComponent implements OnInit {
   }
 
   redirectTo2fa() {
-    this.router.navigate(['/code'])
+    this.router.navigate(['/login/code'])
   }
 }

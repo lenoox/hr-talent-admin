@@ -1,5 +1,8 @@
 <app-table
   [tableData]="jobOffers$"
+  [url]="'/job-offers'"
+  [editModeElement]="true"
+  [deleteModeElement]="true"
   [columnHeader]="columnHeader"
   [(currentPage)]="currentPage"
   [(pageSize)]="pageSize"

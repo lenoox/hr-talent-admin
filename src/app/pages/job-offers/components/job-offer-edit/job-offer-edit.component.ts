@@ -14,8 +14,9 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {Seniority} from "../../../../core/state/seniority";
 import {Location} from "../../../../core/state/location";
 import {DirectoryState} from "../../../../core/state/directory/directory.state";
-import {jobOfferFormToReqest} from "../../../../shared/mappers/job-offer-mapper";
 import {NotificationService} from "../../../../core/services/notification.service";
+import {jobOfferFormToReqest} from "../../../../shared/mappers/job-offer-mapper";
+import {compareWith} from "../../../../core/utils/compare.utils";
 
 
 @Component({
@@ -95,9 +96,11 @@ export class JobOfferEditComponent implements OnInit {
   delete(id: string) {
     this.store.dispatch(new DeleteJobOffer(id))
   }
-  compareWith(jobOffer1: any, jobOffer2: any): boolean {
-    return jobOffer1 && jobOffer2 && jobOffer1.id === jobOffer2.id;
+
+  compareJobOffer(firstObject: any, secondObject: any): boolean {
+    return compareWith(firstObject, secondObject)
   }
+
   onSubmit(data: JobOfferResponse) {
     const jobOffer = jobOfferFormToReqest(data);
     if(this.isEditMode){

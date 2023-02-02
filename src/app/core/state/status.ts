@@ -1,4 +1,4 @@
-export interface Seniority {
+export interface Status {
     id:string;
     key:string;
     name:string;

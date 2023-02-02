@@ -1,11 +1,13 @@
-.job-offer-form{
+.job-offer-form {
   width: 100%;
 }
-.job-offer-form-group{
+
+.job-offer-form-group {
   display: grid;
-  column-gap:10px;
+  column-gap: 10px;
   grid-template-columns: 50% 50%;
 }
-.offerDescription{
+
+.offerDescription {
   width: 100%;
 }

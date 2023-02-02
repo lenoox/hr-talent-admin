@@ -10,7 +10,7 @@ import {
 import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {Observable, tap} from "rxjs";
-import {Paginated} from "../../../core/state/job-offer/job-offer";
+import {Paginated} from "../../../core/state/paginated";
 
 @Component({
   selector: 'app-table',
@@ -18,8 +18,9 @@ import {Paginated} from "../../../core/state/job-offer/job-offer";
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit, AfterViewInit {
-
-
+  @Input() url!:string;
+  @Input() editModeElement!:boolean;
+  @Input() deleteModeElement!:boolean;
   @Input() pageSize!:number;
   @Output() pageSizeChange=new EventEmitter<number>();
   @Input() currentPage!:number;

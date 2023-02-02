@@ -11,6 +11,7 @@ import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 import {JobOfferState} from "./core/state/job-offer/job-offer.state";
 import {DirectoryState} from "./core/state/directory/directory.state";
 import {UserState} from "./core/state/user/user.state";
+import {CandidateState} from "./core/state/candidate/candidate.state";
 @NgModule({
   declarations: [
     AppComponent
@@ -19,7 +20,7 @@ import {UserState} from "./core/state/user/user.state";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgxsModule.forRoot([JobOfferState, DirectoryState, UserState]),
+    NgxsModule.forRoot([JobOfferState, CandidateState, DirectoryState, UserState]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
     CoreModule,
