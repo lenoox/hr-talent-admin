@@ -6,6 +6,7 @@ import {TableComponent} from "./components/table/table.component";
 import {RouterLink} from "@angular/router";
 import {IsRoute} from "./pipes/route.pipe";
 import {IsArrayPipe} from "./pipes/is-array.pipe";
+import {ShortNamePipe} from "./pipes/short-name.pipe";
 
 const COMPONENTS = [
   PageContainerComponent,
@@ -13,7 +14,8 @@ const COMPONENTS = [
 ]
 const PIPES = [
   IsArrayPipe,
-  IsRoute
+  IsRoute,
+  ShortNamePipe
 ]
 
 @NgModule({

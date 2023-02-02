@@ -1,12 +1,67 @@
 @use '@angular/material' as mat;
 @use 'sass:map';
 @import "@angular/material/theming";
-
 @include mat.core();
-
-$app-primary: mat.define-palette(mat.$indigo-palette, 500);
+$blue-color-palette: (
+  50: #e7eaf8,
+  100: #c3cbee,
+  200: #9ba9e3,
+  300: #7187d8,
+  400: #4e6cd0,
+  500: #2452c7,
+  600: #1d4abd,
+  700: #0c40b0,
+  800: #0036a5,
+  900: #002391,
+  A500: #2c5bd1,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: white,
+    A700: white,
+  )
+);
+$white-color-palette: (
+  50: #ffffff,
+  100: #fafafa,
+  200: #f5f5f5,
+  300: #f0f0f0,
+  400: #dedede,
+  500: #c2c2c2,
+  600: #979797,
+  700: #818181,
+  800: #606060,
+  900: #3c3c3c,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: white,
+    A700: white,
+  )
+);
+$app-primary: mat.define-palette($blue-color-palette, 500, A500, 900);
 $app-accent: mat.define-palette(mat.$pink-palette, 500);
-$app-grey: mat.define-palette(mat.$grey-palette, 100, 700);
+$app-white: mat.define-palette($white-color-palette, 100, 700);
 
 $app-light-theme: mat.define-light-theme(
     (
@@ -27,15 +82,21 @@ $app-dark-theme: mat.define-dark-theme(
 );
 
 :root {
-  --bg-color: #{mat.get-color-from-palette($app-grey, 100)};
+  --bg-color: #{mat.get-color-from-palette($app-white, 100)};
+  --text-primary-color: #{mat.get-color-from-palette($app-white, 900)};
+  --text-secondary-color: #{mat.get-color-from-palette($app-white, 100)};
   --login-bg-color: #{mat.get-color-from-palette($app-primary, 500)};
   --sidebar-bg-color: #{mat.get-color-from-palette($app-primary, 500)};
+  --sidebar-btn-color: #{mat.get-color-from-palette($app-primary, A500)};
   @include mat.all-component-colors($app-light-theme);
 }
 
 .darkMode {
-  --bg-color: #{mat.get-color-from-palette($app-grey, 700)};
+  --bg-color: #{mat.get-color-from-palette($app-white, 100)};
+  --text-primary-color: #{mat.get-color-from-palette($app-white, 900)};
+  --text-secondary-color: #{mat.get-color-from-palette($app-white, 100)};
   --login-bg-color: #{mat.get-color-from-palette($app-primary, 500)};
   --sidebar-bg-color: #{mat.get-color-from-palette($app-primary, 500)};
+  --sidebar-btn-color: #{mat.get-color-from-palette($app-primary, A500)};
   @include mat.all-component-colors($app-dark-theme);
 }

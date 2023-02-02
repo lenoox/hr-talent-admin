@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './sidebar.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
-import {RouterLinkWithHref, RouterOutlet} from "@angular/router";
+import {RouterLinkActive, RouterLinkWithHref, RouterOutlet} from "@angular/router";
+import {SharedModule} from "../../../shared/shared.module";
 
 
 
@@ -18,6 +19,8 @@ import {RouterLinkWithHref, RouterOutlet} from "@angular/router";
     MatSidenavModule,
     RouterOutlet,
     RouterLinkWithHref,
+    RouterLinkActive,
+    SharedModule,
   ]
 })
 export class SidebarModule { }

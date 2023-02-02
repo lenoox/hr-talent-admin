@@ -1,7 +1,7 @@
 import {Action, Selector, State, StateContext} from "@ngxs/store";
 import {tap} from "rxjs";
 import {Injectable} from "@angular/core";
-import {LogInUser, TurnOn2fa, TwoFactorAuthenticate} from "./user.action";
+import {GetUser, LogInUser, TurnOn2fa, TwoFactorAuthenticate} from "./user.action";
 import {UserService} from "../../services/user.service";
 import {UserResponse} from "./user";
 import {Router} from "@angular/router";
@@ -45,7 +45,18 @@ export class UserState {
       const state = getState();
       setState({
         ...state,
-        loggedUser: result ? result : null,
+        loggedUser: result,
+        isLogged: !!result?.email
+      })
+    }))
+  }
+  @Action(GetUser)
+  getUser({getState,setState}: StateContext<UserStateModel>){
+    return this.userService.getUser().pipe(tap((result:UserResponse)=>{
+      const state = getState();
+      setState({
+        ...state,
+        loggedUser: result,
         isLogged: !!result?.email
       })
     }))
