@@ -13,8 +13,8 @@ export function jobOfferFormToReqest(jobOfferResponse:JobOfferResponse): JobOffe
 export function jobOfferToList(jobOfferResponse:JobOfferResponse): any {
   const jobOffer = {
     ...jobOfferResponse,
-    locations: jobOfferResponse.locations.map(location=>location.name),
-    seniorities: jobOfferResponse.seniorities.map(location=>location.name)
+    locations: jobOfferResponse.locations,
+    seniorities: jobOfferResponse.seniorities
   };
   return jobOffer;
 }

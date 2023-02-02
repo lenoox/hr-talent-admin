@@ -2,17 +2,24 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {AngularMaterialModule} from "../angular-material.module";
 import { PageContainerComponent } from './components/page-container/page-container.component';
-import {TableComponent} from "./components/job-offers-list/table.component";
+import {TableComponent} from "./components/table/table.component";
 import {RouterLink} from "@angular/router";
+import {IsRoute} from "./pipes/route.pipe";
+import {IsArrayPipe} from "./pipes/is-array.pipe";
 
-const components = [
+const COMPONENTS = [
   PageContainerComponent,
   TableComponent
+]
+const PIPES = [
+  IsArrayPipe,
+  IsRoute
 ]
 
 @NgModule({
   declarations: [
-    ...components
+    ...COMPONENTS,
+    ...PIPES
   ],
   imports: [
     CommonModule,
@@ -21,7 +28,8 @@ const components = [
   ],
   exports: [
     AngularMaterialModule,
-    ...components
+    ...COMPONENTS,
+    ...PIPES
   ]
 })
 export class SharedModule { }

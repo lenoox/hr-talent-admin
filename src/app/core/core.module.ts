@@ -7,7 +7,6 @@ import {DirectoryService} from "./services/directory.service";
 import {NotificationService} from "./services/notification.service";
 import {TokenInterceptor} from "./interceptor/token-interceptor";
 
-
 @NgModule({
   declarations: [],
   imports: [
@@ -16,7 +15,7 @@ import {TokenInterceptor} from "./interceptor/token-interceptor";
     HttpClientModule
   ],
   exports: [
-    SidebarModule
+    SidebarModule,
   ],
   providers:[
     JobOfferService,

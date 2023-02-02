@@ -8,8 +8,8 @@ import {JobOffersListComponent} from "./components/job-offers-list/job-offers-li
 const routes: Routes = [{
   path: '',
   component: JobOffersComponent,
+  runGuardsAndResolvers: 'always',
   children:[
-
     {
       path:'details/:id',
       component: JobOfferDetailsComponent

@@ -30,6 +30,6 @@ export class LoginComponent implements OnInit {
   }
   onSubmit(userRequest: UserRequest) {
     this.store.dispatch(new LogInUser(userRequest))
-    this.router.navigate(['/2fa'])
+    this.router.navigate(['/login/2fa'])
   }
 }

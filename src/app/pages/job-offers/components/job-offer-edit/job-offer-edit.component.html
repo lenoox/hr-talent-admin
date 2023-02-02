@@ -9,7 +9,7 @@
 
       <mat-form-field appearance="outline" >
         <mat-label>Poziom doświadczenia</mat-label>
-        <mat-select multiple formControlName="seniorities" [compareWith]="compareWith">
+        <mat-select multiple formControlName="seniorities" [compareWith]="compareJobOffer">
           <mat-option *ngFor="let seniority of (seniorities$ | async)"
                       [value]="seniority">{{seniority.name}}</mat-option>
         </mat-select>
@@ -20,7 +20,7 @@
     <div class="job-offer-form-group">
       <mat-form-field appearance="outline" >
         <mat-label>Lokalizacje</mat-label>
-        <mat-select  multiple formControlName="locations" [compareWith]="compareWith">
+        <mat-select  multiple formControlName="locations" [compareWith]="compareJobOffer">
           <mat-option *ngFor="let location of (locations$ | async)" [value]="location">{{location.name}}</mat-option>
         </mat-select>
         <mat-error *ngIf="locations?.invalid">Pole wymagane</mat-error>
