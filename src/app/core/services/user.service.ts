@@ -27,4 +27,8 @@ export class UserService {
   refreshToken() {
     return this.http.get<UserResponse>(`${environment.apiUrl}/authentication/refresh`);
   }
+
+  getUser() {
+    return this.http.get<UserResponse>(`${environment.apiUrl}/authentication`);
+  }
 }

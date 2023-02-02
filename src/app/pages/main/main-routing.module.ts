@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component:MainComponent,
     children:[
-
+      { path: '', redirectTo: 'candidates', pathMatch: 'full' },
       {
         path: 'job-offers',
         loadChildren: () => import('../job-offers/job-offers.module').then(m => m.JobOffersModule)

@@ -1,7 +1,10 @@
 import {TurnOn2faRequest, TwoFactorAuthenticateRequest, UserRequest} from "./user";
 
+export class GetUser {
+  static readonly type = '[LogInUser] Get User'
+}
 export class LogInUser {
-  static readonly type = '[LogInUser] Get'
+  static readonly type = '[LogInUser] LogIn'
   constructor(public payload: UserRequest) {
   }
 }
