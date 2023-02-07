@@ -4,56 +4,62 @@ $sidebar-user: 20vh;
 $sidebar-menu: $sidebar - ($sidebar-header + $sidebar-user);
 
 .sidebar {
-  height: $sidebar;
+ height: $sidebar;
 }
-
-.sidebar-header {
-  box-sizing: border-box;
+.sidebar-header{
   height: $sidebar-header;
+  box-sizing: border-box;
   padding: 12px;
 }
-
 .sidebar-menu {
-  height: $sidebar-menu;
+ height: $sidebar-menu;
 }
+.sidebar-menu-item{
+  width: 259px;
+  margin: 10px;
+  height: 46px;
+  box-sizing: border-box;
+  padding: 12px;
 
-.sidebar-menu-item {
+
   background-color: var(--sidebar-btn-color);
   border-radius: 0 20px 20px 0;
-  box-sizing: border-box;
-  height: 46px;
-  margin: 10px;
-  padding: 12px;
-  width: 259px;
-
-  a {
+  a{
     color: var(--text-secondary-color);
+    text-decoration: none;
     font-size: 15px;
     font-weight: 300;
-    text-decoration: none;
   }
-
   .active {
-    color: var(--text-secondary-color);
-    font-size: 15px;
     font-weight: 500;
+    color: var(--text-secondary-color);
     text-decoration: none;
+    font-size: 15px;
   }
 }
-
-.sidebar-user {
-  color: var(--text-secondary-color);
+.sidebar-user{
+  width: 279px;
+  padding: 0 0 0 10px;
+  color: white;
   font-size: 18px;
   height: $sidebar-user;
-  width: 259px;
 }
-
-.avatar {
-  background-color: var(--sidebar-btn-color);
-  border-radius: 50%;
-  color: var(--text-secondary-color);
-  font-weight: 700;
+.user-name{
+  width: 100%;
+ padding: 0 0 0 10px;
+}
+.user-menu {
+  width: 70px;
+}
+.avatar-name {
+  width: 50px;
   height: 50px;
-  margin-right: 16px;
+  background-color: var(--sidebar-btn-color);
+  color: white;
+  font-weight: 700;
+  border-radius: 50%;
+}
+.avatar{
   width: 50px;
 }
+

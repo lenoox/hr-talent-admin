@@ -7,6 +7,7 @@ import {
 export class GetUser {
   static readonly type = '[LogInUser] Get User';
 }
+
 export class LogInUser {
   static readonly type = '[LogInUser] LogIn';
   constructor(public payload: UserRequest) {}
@@ -18,4 +19,10 @@ export class TurnOn2fa {
 export class TwoFactorAuthenticate {
   static readonly type = '[User2FA] Two Factor Authenticate';
   constructor(public payload: TwoFactorAuthenticateRequest) {}
+}
+export class Logout {
+  static readonly type = '[LogInUser] Logout user';
+}
+export class Reset {
+  static readonly type = '[LogInUser] Logout user';
 }

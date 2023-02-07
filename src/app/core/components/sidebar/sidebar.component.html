@@ -1,24 +1,33 @@
 <div class="sidebar">
-  <div class="sidebar-header">
-    <img src="../../../../assets/images/logo-white.svg" />
-  </div>
-  <div
-    class="sidebar-menu flex flex-direction-column flex-align-center flex-justify-center">
-    <div class="">
-      <div class="sidebar-menu-item flex flex-align-center">
-        <a routerLinkActive="active" routerLink="candidates">Kandydaci</a>
-      </div>
-      <div class="sidebar-menu-item flex flex-align-center">
-        <a routerLinkActive="active" routerLink="job-offers">Oferty pracy</a>
+<div class="sidebar-header">
+  <img src="../../../../assets/images/logo-white.svg" />
+</div>
+<div class="sidebar-menu flex flex-direction-column flex-align-center flex-justify-center">
+<div class="">
+  <div class="sidebar-menu-item flex flex-align-center"><a routerLinkActive="active" routerLink="candidates">Kandydaci</a></div>
+  <div class="sidebar-menu-item flex flex-align-center"><a routerLinkActive="active" routerLink="job-offers">Oferty pracy</a></div>
+</div>
+</div>
+<div class="flex flex-justify-center">
+  <div class="sidebar-user flex flex-align-center">
+    <div class="avatar">
+      <div class="avatar-name flex flex-align-center flex-justify-center">
+        {{user?.firstName | shortName}}{{user?.lastName | shortName}}
       </div>
     </div>
-  </div>
-  <div class="flex flex-justify-center">
-    <div class="sidebar-user flex flex-align-center">
-      <div class="avatar flex flex-align-center flex-justify-center">
-        {{ user?.firstName | shortName }}{{ user?.lastName | shortName }}
-      </div>
-      <span>{{ user?.firstName }} {{ user?.lastName }}</span>
+    <div class="user-name">{{user?.firstName}} {{user?.lastName}}</div>
+    <div class="user-menu flex flex-align-center flex-justify-end">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Akcje dla użytkownika">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+      <mat-menu #menu="matMenu">
+        <button (click)="logout()" mat-menu-item>
+          <mat-icon aria-hidden="false" aria-label="Usuń" fontIcon="logout"></mat-icon>
+          <span>Wyloguj</span>
+        </button>
+      </mat-menu>
+
     </div>
   </div>
+</div>
 </div>
