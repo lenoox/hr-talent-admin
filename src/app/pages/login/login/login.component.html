@@ -1,13 +1,18 @@
-<form class="job-offer-form flex flex-direction-column" [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+<form
+  class="job-offer-form flex flex-direction-column"
+  [formGroup]="userForm"
+  (ngSubmit)="onSubmit(userForm.value)">
   <mat-form-field class="job-offer-field" appearance="outline">
     <mat-label>Adres Email</mat-label>
-    <input matInput type="text" formControlName="email">
+    <input matInput type="text" formControlName="email" />
     <mat-error *ngIf="email?.invalid">Pole wymagane</mat-error>
   </mat-form-field>
   <mat-form-field class="job-offer-field" appearance="outline">
     <mat-label>Hasło</mat-label>
-    <input matInput type="password" formControlName="password">
+    <input matInput type="password" formControlName="password" />
     <mat-error *ngIf="password?.invalid">Pole wymagane</mat-error>
   </mat-form-field>
-  <button class="login-button" type="submit" mat-flat-button color="primary">Wyślij</button>
+  <button class="login-button" type="submit" mat-flat-button color="primary">
+    Wyślij
+  </button>
 </form>

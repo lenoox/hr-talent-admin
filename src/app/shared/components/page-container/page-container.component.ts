@@ -1,15 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-page-container',
   templateUrl: './page-container.component.html',
-  styleUrls: ['./page-container.component.scss']
+  styleUrls: ['./page-container.component.scss'],
 })
-export class PageContainerComponent implements OnInit {
-  @Input() title!: string;
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class PageContainerComponent {
+  @Input()
+  title!: string;
 }

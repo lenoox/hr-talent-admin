@@ -1,11 +1,16 @@
 <app-page-container title="Kandydaci">
   <div class="action-section" *ngIf="isRoute">
     <span *ngIf="candidate$ | async; let candidate">
-    <ng-container *ngIf="resumeUrl; else notFound">
-      <a [href]="resumeUrl" target="_blank"  mat-flat-button color="primary" [download]="candidate.attachment">
-        Pobierz Załącznik
-      </a>
-    </ng-container>
+      <ng-container *ngIf="resumeUrl; else notFound">
+        <a
+          [href]="resumeUrl"
+          target="_blank"
+          mat-flat-button
+          color="primary"
+          [download]="candidate.attachment">
+          Pobierz Załącznik
+        </a>
+      </ng-container>
       <ng-template #notFound>Brak zalącznika</ng-template>
     </span>
   </div>
@@ -13,4 +18,3 @@
     <router-outlet></router-outlet>
   </div>
 </app-page-container>
-

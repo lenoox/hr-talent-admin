@@ -1,19 +1,24 @@
 <div class="sidebar">
-<div class="sidebar-header">
-  <img src="../../../../assets/images/logo-white.svg" />
-</div>
-<div class="sidebar-menu flex flex-direction-column flex-align-center flex-justify-center">
-<div class="">
-  <div class="sidebar-menu-item flex flex-align-center"><a routerLinkActive="active" routerLink="candidates">Kandydaci</a></div>
-  <div class="sidebar-menu-item flex flex-align-center"><a routerLinkActive="active" routerLink="job-offers">Oferty pracy</a></div>
-</div>
-</div>
-<div class="flex flex-justify-center">
-  <div class="sidebar-user flex flex-align-center">
-    <div class="avatar flex flex-align-center flex-justify-center">
-      {{user?.firstName | shortName}}{{user?.lastName | shortName}}
-    </div>
-    <span>{{user?.firstName}} {{user?.lastName}}</span>
+  <div class="sidebar-header">
+    <img src="../../../../assets/images/logo-white.svg" />
   </div>
-</div>
+  <div
+    class="sidebar-menu flex flex-direction-column flex-align-center flex-justify-center">
+    <div class="">
+      <div class="sidebar-menu-item flex flex-align-center">
+        <a routerLinkActive="active" routerLink="candidates">Kandydaci</a>
+      </div>
+      <div class="sidebar-menu-item flex flex-align-center">
+        <a routerLinkActive="active" routerLink="job-offers">Oferty pracy</a>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-justify-center">
+    <div class="sidebar-user flex flex-align-center">
+      <div class="avatar flex flex-align-center flex-justify-center">
+        {{ user?.firstName | shortName }}{{ user?.lastName | shortName }}
+      </div>
+      <span>{{ user?.firstName }} {{ user?.lastName }}</span>
+    </div>
+  </div>
 </div>

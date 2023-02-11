@@ -3,14 +3,10 @@ export interface UserRequest {
   password: string;
 }
 export class TwoFactorAuthenticateRequest {
-  constructor(
-    public twoFactorAuthenticationCode: string,
-  ) {}
+  constructor(public twoFactorAuthenticationCode: string) {}
 }
 export class TurnOn2faRequest {
-  constructor(
-    public twoFactorAuthenticationCode: string,
-  ) {}
+  constructor(public twoFactorAuthenticationCode: string) {}
 }
 export interface UserResponse {
   email: string;

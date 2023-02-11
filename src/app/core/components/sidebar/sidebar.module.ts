@@ -1,19 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './sidebar.component';
-import {MatSidenavModule} from "@angular/material/sidenav";
-import {RouterLinkActive, RouterLinkWithHref, RouterOutlet} from "@angular/router";
-import {SharedModule} from "../../../shared/shared.module";
-
-
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {
+  RouterLinkActive,
+  RouterLinkWithHref,
+  RouterOutlet,
+} from '@angular/router';
+import { SharedModule } from '../../../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    SidebarComponent
-  ],
-  exports: [
-    SidebarComponent
-  ],
+  declarations: [SidebarComponent],
+  exports: [SidebarComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
@@ -21,6 +19,6 @@ import {SharedModule} from "../../../shared/shared.module";
     RouterLinkWithHref,
     RouterLinkActive,
     SharedModule,
-  ]
+  ],
 })
-export class SidebarModule { }
+export class SidebarModule {}

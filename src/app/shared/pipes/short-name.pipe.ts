@@ -1,11 +1,11 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({name: "shortName"})
+@Pipe({ name: 'shortName' })
 export class ShortNamePipe implements PipeTransform {
   transform(fullName: string): any {
     return fullName
-      .split(" ")
+      .split(' ')
       .map(n => n[0])
-      .join("");
+      .join('');
   }
 }

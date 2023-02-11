@@ -2,21 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
-import {CoreModule} from "../../core/core.module";
-import {JobOffersModule} from "../job-offers/job-offers.module";
-import {CandidatesModule} from "../candidates/candidates.module";
-import {MatSidenavModule} from "@angular/material/sidenav";
-import {RouterLinkWithHref, RouterOutlet} from "@angular/router";
-
-
+import { CoreModule } from '../../core/core.module';
+import { JobOffersModule } from '../job-offers/job-offers.module';
+import { CandidatesModule } from '../candidates/candidates.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { RouterLinkWithHref, RouterOutlet } from '@angular/router';
 
 @NgModule({
-  declarations: [
-    MainComponent
-  ],
-  exports: [
-    MainComponent,
-  ],
+  declarations: [MainComponent],
+  exports: [MainComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
@@ -26,7 +20,6 @@ import {RouterLinkWithHref, RouterOutlet} from "@angular/router";
     RouterLinkWithHref,
     JobOffersModule,
     CandidatesModule,
-
-  ]
+  ],
 })
-export class MainModule { }
+export class MainModule {}
