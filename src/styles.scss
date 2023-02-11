@@ -1,15 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body {
+html,
+body {
   height: 100%;
 }
+
 body {
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
   margin: 0;
-  font-family: Roboto,
-  "Helvetica Neue", sans-serif;
 }
+
 .flex {
-  display: flex;
   $flex-direction: (
     row: row,
     row-reverse: row-reverse,
@@ -22,28 +23,31 @@ body {
     center: center,
     around: space-around,
     between: space-between,
-    evenly: space-evenly
+    evenly: space-evenly,
   );
   $align-positions: (
     start: flex-start,
     end: flex-end,
     center: center,
     stretch: stretch,
-    baseline: baseline
+    baseline: baseline,
   );
 
-  @mixin just-align($name,$prop,$arr) {
+  @include just-align('direction', 'flex-direction', $flex-direction);
+  @include just-align('align', 'align-items', $align-positions);
+  @include just-align('justify', 'justify-content', $justify-positions);
+
+  display: flex;
+
+  @mixin just-align($name, $prop, $arr) {
     @each $mod, $dir in $arr {
       &-#{$name}-#{$mod} {
         #{$prop}: #{$dir};
       }
     }
   }
-
-  @include just-align('direction','flex-direction', $flex-direction);
-  @include just-align('align','align-items', $align-positions);
-  @include just-align('justify','justify-content', $justify-positions);
 }
-.text-bold{
+
+.text-bold {
   font-weight: 700;
 }

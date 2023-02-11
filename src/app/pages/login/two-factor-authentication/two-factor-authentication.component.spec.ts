@@ -8,9 +8,8 @@ describe('TwoFactorAuthenticationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TwoFactorAuthenticationComponent ]
-    })
-    .compileComponents();
+      declarations: [TwoFactorAuthenticationComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TwoFactorAuthenticationComponent);
     component = fixture.componentInstance;

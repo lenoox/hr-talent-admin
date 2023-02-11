@@ -1,5 +1,5 @@
-import {Location} from "../location";
-import {Seniority} from "../seniority";
+import { Location } from '../location';
+import { Seniority } from '../seniority';
 
 export interface JobOfferResponse {
   id: string;
@@ -8,7 +8,7 @@ export interface JobOfferResponse {
   seniorities: Seniority[];
   locations: Location[];
 }
-export interface JobOfferRequest{
+export interface JobOfferRequest {
   id: string;
   position: string;
   offerDescription: string;

@@ -1,9 +1,14 @@
 <app-page-container title="Oferty pracy">
   <div class="action-section" *ngIf="isRoute">
-    <button type="submit" mat-flat-button color="primary" [routerLink]="['/job-offers','new']">Dodaj ofertę</button>
+    <button
+      type="submit"
+      mat-flat-button
+      color="primary"
+      [routerLink]="['/job-offers', 'new']">
+      Dodaj ofertę
+    </button>
   </div>
   <div class="content">
     <router-outlet></router-outlet>
   </div>
 </app-page-container>
-

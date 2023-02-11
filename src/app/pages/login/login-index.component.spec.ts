@@ -8,9 +8,8 @@ describe('LoginIndexComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginIndexComponent ]
-    })
-    .compileComponents();
+      declarations: [LoginIndexComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LoginIndexComponent);
     component = fixture.componentInstance;

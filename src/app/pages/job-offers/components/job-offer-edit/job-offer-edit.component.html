@@ -1,33 +1,49 @@
 <div class="example-container">
-  <form class="job-offer-form" [formGroup]="jobOfferForm" (ngSubmit)="onSubmit(jobOfferForm.value)">
+  <form
+    class="job-offer-form"
+    [formGroup]="jobOfferForm"
+    (ngSubmit)="onSubmit(jobOfferForm.value)">
     <div class="job-offer-form-group">
       <mat-form-field appearance="outline">
         <mat-label>Tytuł oferty</mat-label>
-        <input matInput type="text" formControlName="position">
+        <input matInput type="text" formControlName="position" />
         <mat-error *ngIf="position?.invalid">Pole wymagane</mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" >
+      <mat-form-field appearance="outline">
         <mat-label>Poziom doświadczenia</mat-label>
-        <mat-select multiple formControlName="seniorities" [compareWith]="compareJobOffer">
-          <mat-option *ngFor="let seniority of (seniorities$ | async)"
-                      [value]="seniority">{{seniority.name}}</mat-option>
+        <mat-select
+          multiple
+          formControlName="seniorities"
+          [compareWith]="compareJobOffer">
+          <mat-option
+            *ngFor="let seniority of seniorities$ | async"
+            [value]="seniority"
+            >{{ seniority.name }}</mat-option
+          >
         </mat-select>
         <mat-error *ngIf="seniorities?.invalid">Pole wymagane</mat-error>
       </mat-form-field>
     </div>
 
     <div class="job-offer-form-group">
-      <mat-form-field appearance="outline" >
+      <mat-form-field appearance="outline">
         <mat-label>Lokalizacje</mat-label>
-        <mat-select  multiple formControlName="locations" [compareWith]="compareJobOffer">
-          <mat-option *ngFor="let location of (locations$ | async)" [value]="location">{{location.name}}</mat-option>
+        <mat-select
+          multiple
+          formControlName="locations"
+          [compareWith]="compareJobOffer">
+          <mat-option
+            *ngFor="let location of locations$ | async"
+            [value]="location"
+            >{{ location.name }}</mat-option
+          >
         </mat-select>
         <mat-error *ngIf="locations?.invalid">Pole wymagane</mat-error>
       </mat-form-field>
     </div>
 
-    <mat-form-field class="offerDescription" appearance="outline">
+    <mat-form-field class="offer-description" appearance="outline">
       <mat-label>Opis</mat-label>
       <textarea matInput formControlName="offerDescription"></textarea>
       <mat-error *ngIf="offerDescription?.invalid">Pole wymagane</mat-error>
@@ -35,5 +51,3 @@
     <button type="submit" mat-flat-button color="primary">Wyślij</button>
   </form>
 </div>
-
-

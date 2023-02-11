@@ -3,15 +3,16 @@
 }
 
 .candidate-group {
-  display: grid;
   column-gap: 10px;
+  display: grid;
   grid-template-columns: 50% 50%;
 }
-:host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper{
-  margin: 0!important;
-  padding: 0!important;
+
+:host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-.candidateDescription {
+.candidate-description {
   width: 100%;
 }
