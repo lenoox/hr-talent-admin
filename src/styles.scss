@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'flex';
 
 html,
 body {
@@ -8,44 +9,6 @@ body {
 body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   margin: 0;
-}
-
-.flex {
-  $flex-direction: (
-    row: row,
-    row-reverse: row-reverse,
-    column: column,
-    column-reverse: column-reverse,
-  );
-  $justify-positions: (
-    start: flex-start,
-    end: flex-end,
-    center: center,
-    around: space-around,
-    between: space-between,
-    evenly: space-evenly,
-  );
-  $align-positions: (
-    start: flex-start,
-    end: flex-end,
-    center: center,
-    stretch: stretch,
-    baseline: baseline,
-  );
-
-  @include just-align('direction', 'flex-direction', $flex-direction);
-  @include just-align('align', 'align-items', $align-positions);
-  @include just-align('justify', 'justify-content', $justify-positions);
-
-  display: flex;
-
-  @mixin just-align($name, $prop, $arr) {
-    @each $mod, $dir in $arr {
-      &-#{$name}-#{$mod} {
-        #{$prop}: #{$dir};
-      }
-    }
-  }
 }
 
 .text-bold {
