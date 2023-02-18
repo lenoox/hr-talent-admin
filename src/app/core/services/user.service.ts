@@ -54,6 +54,9 @@ export class UserService {
   }
 
   logout() {
-    return this.http.post<null>(`${environment.apiUrl}/authentication/log-out`, null);
+    return this.http.post<null>(
+      `${environment.apiUrl}/authentication/log-out`,
+      null
+    );
   }
 }

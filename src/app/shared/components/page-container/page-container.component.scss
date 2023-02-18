@@ -1,14 +1,16 @@
 .page-container {
   height: 100%;
 }
+
 .content-container {
-  background: white;
-  margin:70px 0 70px 0;
+  background: var(--bg-color);
+  height: 80%;
+  margin: 70px 0;
   padding: 24px;
   width: 90%;
-  height: 80%;
 }
-.header-container{
+
+.header-container {
   display: grid;
   grid-template-columns: 40% 60%;
 }

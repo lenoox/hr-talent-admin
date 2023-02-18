@@ -1,39 +1,43 @@
 <div class="candidate" *ngIf="candidate$ | async; let candidate">
-
   <form [formGroup]="candidateForm" (ngSubmit)="onSubmit(candidateForm.value)">
     <div class="candidate-group">
       <div>
         <span class="text-bold">Imię i Nazwisko:</span>
-        <p>{{candidate.name}}</p>
+        <p>{{ candidate.name }}</p>
       </div>
       <div>
         <span class="text-bold">Obecne stanowisko:</span>
-        <p>{{candidate.position}}</p>
+        <p>{{ candidate.position }}</p>
       </div>
       <div>
         <span class="text-bold">Lokalizacje:</span>
-        <p>{{ candidate.locations}}</p>
+        <p>{{ candidate.locations }}</p>
       </div>
       <div>
         <mat-form-field appearance="outline">
           <mat-label>Status</mat-label>
           <mat-select formControlName="status" [compareWith]="compareCandidate">
-            <mat-option *ngFor="let status of (statuses$ | async)" [value]="status">{{status.name}}</mat-option>
+            <mat-option
+              *ngFor="let status of statuses$ | async"
+              [value]="status"
+              >{{ status.name }}</mat-option
+            >
           </mat-select>
           <mat-error *ngIf="status?.invalid">Pole wymagane</mat-error>
         </mat-form-field>
       </div>
       <div class="candidateDescription">
         <span class="text-bold">Opis:</span>
-        <p>{{candidate.aboutMe}}</p>
+        <p>{{ candidate.aboutMe }}</p>
       </div>
       <div class="candidateDescription">
         <span class="text-bold">oferty:</span>
         <ul>
-          <ng-container
-            *ngFor="let jobOffer of candidate.jobOffer">
-            <li class="link-offer" [routerLink]="['/job-offers','details',jobOffer.id]">
-              {{jobOffer.position}}
+          <ng-container *ngFor="let jobOffer of candidate.jobOffer">
+            <li
+              class="link-offer"
+              [routerLink]="['/job-offers', 'details', jobOffer.id]">
+              {{ jobOffer.position }}
             </li>
           </ng-container>
         </ul>
