@@ -6,9 +6,9 @@ import {
   Router,
 } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
-import { Observable, tap } from 'rxjs';
+import { catchError, mergeMap, Observable, of, tap } from 'rxjs';
 import { UserState } from '../state/user/user.state';
-import { GetUser } from '../state/user/user.action';
+import { GetUser, Reset } from '../state/user/user.action';
 
 @Injectable({
   providedIn: 'root',
@@ -21,13 +21,24 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> {
     return this.store.dispatch(new GetUser()).pipe(
-      tap((isLogged: boolean) => {
-        if (isLogged) {
-          return true;
-        } else {
-          return this.router.navigate(['/login']);
-        }
+      catchError(() => {
+        this.store.dispatch(new Reset());
+        return this.isLogged(false);
+      }),
+      mergeMap((isLogged: boolean) => {
+        return this.isLogged(isLogged);
       })
     );
+  }
+  redirect(): Observable<boolean> {
+    this.router.navigate(['/login/user']);
+    return of(false);
+  }
+  isLogged(isLogged: boolean): Observable<boolean> {
+    if (isLogged) {
+      return of(true);
+    } else {
+      return this.redirect();
+    }
   }
 }

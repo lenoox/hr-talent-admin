@@ -1,5 +1,6 @@
 import { Location } from '../location';
 import { Status } from '../status';
+import { JobOfferResponse } from '../job-offer/job-offer';
 
 export interface CandidateResponse {
   id: string;
@@ -11,6 +12,7 @@ export interface CandidateResponse {
   attachment: string;
   aboutMe: string;
   status: Status;
+  jobOffer: JobOfferResponse[];
 }
 
 export interface CandidateRequest {

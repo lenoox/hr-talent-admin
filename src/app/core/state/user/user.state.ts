@@ -1,9 +1,11 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { tap } from 'rxjs';
+import { catchError, of, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {
   GetUser,
   LogInUser,
+  Logout,
+  Reset,
   TurnOn2fa,
   TwoFactorAuthenticate,
 } from './user.action';
@@ -95,5 +97,26 @@ export class UserState {
         });
       })
     );
+  }
+
+  @Action(Logout)
+  logout({ getState, setState }: StateContext<UserStateModel>) {
+    return this.userService.logout().pipe(
+      tap(result => {
+        setState({
+          user: null,
+          loggedUser: null,
+          isLogged: false,
+        });
+      })
+    );
+  }
+  @Action(Reset)
+  reset({ getState, setState }: StateContext<UserStateModel>) {
+    setState({
+      user: null,
+      loggedUser: null,
+      isLogged: false,
+    });
   }
 }

@@ -1,0 +1,17 @@
+:host quill-editor {
+  display: block;
+}
+
+:host ::ng-deep quill-editor .ql-container.ql-snow {
+  height: auto;
+}
+
+:host ::ng-deep quill-editor .ql-editor {
+  font-size: 16px;
+  height: 250px;
+  overflow-y: scroll;
+
+  p {
+    margin: 0 0 2px;
+  }
+}

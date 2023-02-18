@@ -45,15 +45,28 @@ $sidebar-menu: $sidebar - ($sidebar-header + $sidebar-user);
   color: var(--text-secondary-color);
   font-size: 18px;
   height: $sidebar-user;
-  width: 259px;
+  padding: 0 0 0 10px;
+  width: 279px;
 }
 
-.avatar {
+.user-name {
+  padding: 0 0 0 10px;
+  width: 100%;
+}
+
+.user-menu {
+  width: 70px;
+}
+
+.avatar-name {
   background-color: var(--sidebar-btn-color);
   border-radius: 50%;
   color: var(--text-secondary-color);
   font-weight: 700;
   height: 50px;
-  margin-right: 16px;
+  width: 50px;
+}
+
+.avatar {
   width: 50px;
 }

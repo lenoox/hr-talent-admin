@@ -13,8 +13,7 @@ import { candidateFormToReqest } from '../../../../shared/mappers/candidates-map
 import { FormBuilder, Validators } from '@angular/forms';
 import { NotificationService } from '../../../../core/services/notification.service';
 import { Status } from '../../../../core/state/status';
-import { compareWith } from '../../../../core/utils/compare.utils';
-import { environment } from '../../../../../environments/environment';
+import { compareWithId } from '../../../../core/utils/compare.utils';
 
 @Component({
   selector: 'app-candidate-details',
@@ -38,9 +37,7 @@ export class CandidateDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.candidateForm = this._formBuilder.group({
-      status: ['', Validators.required],
-    });
+    this.candidateForm = this.getForm();
     this.route?.params
       .pipe(
         switchMap((params: Params) => {
@@ -52,7 +49,7 @@ export class CandidateDetailsComponent implements OnInit {
         })
       )
       .subscribe((candidateResponse: CandidateResponse) => {
-        this.candidateForm.patchValue(candidateResponse);
+        this.candidateForm = this.getForm(candidateResponse);
       });
     this.candidateId = this.route.snapshot.params['id'];
   }
@@ -62,9 +59,13 @@ export class CandidateDetailsComponent implements OnInit {
   }
 
   compareCandidate(firstObject: any, secondObject: any): boolean {
-    return compareWith(firstObject, secondObject);
+    return compareWithId(firstObject, secondObject);
   }
-
+  getForm(data: CandidateResponse | null = null) {
+    return this._formBuilder.group({
+      status: [data?.status ? data?.status : null, Validators.required],
+    });
+  }
   onSubmit(data: CandidateResponse) {
     const candidate = candidateFormToReqest(data);
     this.store.dispatch(new UpdateCandidate(candidate, this.candidateId));

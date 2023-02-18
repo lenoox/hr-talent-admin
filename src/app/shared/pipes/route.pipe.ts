@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 export class IsRoute implements PipeTransform {
   constructor(private router: Router) {}
   transform(value: any): boolean {
-    console.log(this.router.url);
     return this.router.url === value;
   }
 }

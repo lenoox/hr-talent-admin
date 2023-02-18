@@ -16,7 +16,7 @@ import { Location } from '../../../../core/state/location';
 import { DirectoryState } from '../../../../core/state/directory/directory.state';
 import { NotificationService } from '../../../../core/services/notification.service';
 import { jobOfferFormToReqest } from '../../../../shared/mappers/job-offer-mapper';
-import { compareWith } from '../../../../core/utils/compare.utils';
+import { compareWithId } from '../../../../core/utils/compare.utils';
 
 @Component({
   selector: 'app-job-offer-edit',
@@ -101,7 +101,7 @@ export class JobOfferEditComponent implements OnInit {
   }
 
   compareJobOffer(firstObject: any, secondObject: any): boolean {
-    return compareWith(firstObject, secondObject);
+    return compareWithId(firstObject, secondObject);
   }
 
   onSubmit(data: JobOfferResponse) {
