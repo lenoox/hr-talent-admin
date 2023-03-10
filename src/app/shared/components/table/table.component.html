@@ -84,6 +84,7 @@
     <tr mat-row *matRowDef="let row; columns: objectKeys(columnHeader)"></tr>
   </table>
   <mat-paginator
+    *ngIf="isPagination"
     #paginator
     [length]="totalRows"
     [pageIndex]="currentPage"

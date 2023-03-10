@@ -8,18 +8,20 @@ import { JobOfferDetailsComponent } from './components/job-offer-details/job-off
 import { SharedModule } from '../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
+const COMPONENTS = [
+  JobOffersComponent,
+  JobOffersListComponent,
+  JobOfferEditComponent,
+  JobOfferDetailsComponent,
+];
+const MODULES = [
+  CommonModule,
+  JobOffersRoutingModule,
+  SharedModule,
+  ReactiveFormsModule,
+];
 @NgModule({
-  declarations: [
-    JobOffersComponent,
-    JobOffersListComponent,
-    JobOfferEditComponent,
-    JobOfferDetailsComponent,
-  ],
-  imports: [
-    CommonModule,
-    JobOffersRoutingModule,
-    SharedModule,
-    ReactiveFormsModule,
-  ],
+  declarations: [...COMPONENTS],
+  imports: [...MODULES],
 })
 export class JobOffersModule {}

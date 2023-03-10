@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TwoFactorAuthenticateRequest } from '../../../core/state/user/user';
 import { TwoFactorAuthenticate } from '../../../core/state/user/user.action';
 import { Store } from '@ngxs/store';
 import { Router } from '@angular/router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-two-factor-authentication',
   templateUrl: './two-factor-authentication.component.html',
@@ -18,6 +20,7 @@ export class TwoFactorAuthenticationComponent {
     let user2FARequest = new TwoFactorAuthenticateRequest(code);
     this.store
       .dispatch(new TwoFactorAuthenticate(user2FARequest))
+      .pipe(untilDestroyed(this))
       .subscribe(() => {
         this.router.navigate(['/candidates']);
       });

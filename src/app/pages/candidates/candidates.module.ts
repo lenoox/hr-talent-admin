@@ -7,17 +7,19 @@ import { CandidatesListComponent } from './components/candidates-list/candidates
 import { SharedModule } from '../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
+const COMPONENTS = [
+  CandidatesComponent,
+  CandidateDetailsComponent,
+  CandidatesListComponent,
+];
+const MODULES = [
+  CommonModule,
+  CandidatesRoutingModule,
+  SharedModule,
+  ReactiveFormsModule,
+];
 @NgModule({
-  declarations: [
-    CandidatesComponent,
-    CandidateDetailsComponent,
-    CandidatesListComponent,
-  ],
-  imports: [
-    CommonModule,
-    CandidatesRoutingModule,
-    SharedModule,
-    ReactiveFormsModule,
-  ],
+  declarations: [...COMPONENTS],
+  imports: [...MODULES],
 })
 export class CandidatesModule {}

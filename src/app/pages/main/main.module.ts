@@ -8,18 +8,20 @@ import { CandidatesModule } from '../candidates/candidates.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterLinkWithHref, RouterOutlet } from '@angular/router';
 
+const COMPONENTS = [MainComponent];
+const MODULES = [
+  CommonModule,
+  MainRoutingModule,
+  CoreModule,
+  MatSidenavModule,
+  RouterOutlet,
+  RouterLinkWithHref,
+  JobOffersModule,
+  CandidatesModule,
+];
 @NgModule({
-  declarations: [MainComponent],
-  exports: [MainComponent],
-  imports: [
-    CommonModule,
-    MainRoutingModule,
-    CoreModule,
-    MatSidenavModule,
-    RouterOutlet,
-    RouterLinkWithHref,
-    JobOffersModule,
-    CandidatesModule,
-  ],
+  declarations: [...COMPONENTS],
+  exports: [...COMPONENTS],
+  imports: [...MODULES],
 })
 export class MainModule {}

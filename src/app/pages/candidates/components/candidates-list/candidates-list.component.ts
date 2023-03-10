@@ -16,7 +16,7 @@ export class CandidatesListComponent implements OnInit {
     Paginated<CandidateResponse[]>
   >;
   columnHeader = {
-    nr: 'nr',
+    nr: 'Nr',
     name: 'Imię i nazwisko',
     locations: 'Lokalizacja',
     position: 'Stanowisko',

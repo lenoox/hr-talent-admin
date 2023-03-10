@@ -27,7 +27,6 @@ const MODULES = [
   QuillViewComponent,
   QuillEditorComponent,
 ];
-
 @NgModule({
   declarations: [...COMPONENTS, ...PIPES],
   imports: [...MODULES],

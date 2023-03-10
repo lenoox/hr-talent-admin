@@ -3,6 +3,7 @@
   <button
     class="generate-button"
     type="submit"
+    *ngIf="!enabled2fa"
     (click)="generate()"
     mat-flat-button
     color="primary">
@@ -18,26 +19,28 @@
     Logowanie dwustopniowe
   </button>
   <ng-container *ngIf="enabled2fa">
-    <span>Zeskanuj kod aplikacja Google Authenticator</span>
+    <span class="qr-code-text">
+      Zeskanuj kod aplikacja Google Authenticator
+    </span>
     <img class="qr-code" [src]="qrImage" alt="" />
-    <mat-form-field class="example-full-width" appearance="outline">
+    <mat-form-field class="two-factor-input" appearance="outline">
       <mat-label>Włącz logowanie dwustopniowe</mat-label>
       <input
         matInput
         #code2fa
         maxlength="6"
         [(ngModel)]="code"
-        placeholder="Kod"
+        placeholder="Kod z Google Authenticator"
         value="94043" />
       <mat-hint align="end">{{ code2fa.value.length }} / 6</mat-hint>
     </mat-form-field>
     <button
-      class="login-button"
+      class="enabled2fa-button"
       type="submit"
       (click)="turnOn2fa(code2fa.value)"
       mat-flat-button
       color="primary">
-      Włacz dwustopniowe logowanie
+      Włącz logowanie dwustopniowe
     </button>
   </ng-container>
 </div>

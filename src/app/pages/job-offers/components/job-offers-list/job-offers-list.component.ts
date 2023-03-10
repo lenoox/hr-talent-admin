@@ -19,11 +19,11 @@ export class JobOffersListComponent implements OnInit {
     Paginated<JobOfferResponse[]>
   >;
   columnHeader = {
-    nr: 'nr',
-    position: 'position',
-    seniorities: 'seniorities',
-    locations: 'locations',
-    actions: 'actions',
+    nr: 'Nr',
+    position: 'Tytuł oferty',
+    seniorities: 'Poziom doświadczenia',
+    locations: 'Lokalizaja',
+    actions: 'Akcja',
   };
   pageSize = 5;
   currentPage = 0;
