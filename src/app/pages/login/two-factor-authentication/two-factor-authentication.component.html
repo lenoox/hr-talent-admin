@@ -1,24 +1,24 @@
 <div class="authenticate flex flex-justify-center flex-align-center">
-  <div class="authenticate-form flex flex-direction-column">
-    <mat-form-field class="example-full-width" appearance="fill">
+  <div class="flex flex-direction-column">
+    <mat-form-field class="authenticate-input" appearance="outline">
       <mat-label>Kod autorazacyjny</mat-label>
       <input
         matInput
         #twoFactorAuthenticateCode
         maxlength="6"
         [(ngModel)]="code"
-        placeholder="Kod" />
+        placeholder="Kod z Google Authenticator" />
       <mat-hint align="end"
         >{{ twoFactorAuthenticateCode.value.length }}/6</mat-hint
       >
     </mat-form-field>
     <button
-      class="login-button"
+      class="authenticate-button"
       type="submit"
       (click)="twoFactorAuthenticate(twoFactorAuthenticateCode.value)"
       mat-flat-button
       color="primary">
-      Wyślij
+      Zaloguj
     </button>
   </div>
 </div>

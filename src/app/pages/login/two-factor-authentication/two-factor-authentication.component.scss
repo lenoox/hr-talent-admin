@@ -1,7 +1,10 @@
+@import 'src/variables';
+
 .authenticate {
   height: 200px;
 }
 
-.authenticate-form {
-  width: 50%;
+.authenticate-input,
+.authenticate-button {
+  width: $width-login-input;
 }

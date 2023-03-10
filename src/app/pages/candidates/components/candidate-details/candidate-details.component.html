@@ -30,19 +30,22 @@
         <span class="text-bold">Opis:</span>
         <p>{{ candidate.aboutMe }}</p>
       </div>
-      <div class="candidateDescription">
-        <span class="text-bold">oferty:</span>
-        <ul>
-          <ng-container *ngFor="let jobOffer of candidate.jobOffer">
-            <li
-              class="link-offer"
-              [routerLink]="['/job-offers', 'details', jobOffer.id]">
-              {{ jobOffer.position }}
-            </li>
-          </ng-container>
-        </ul>
-      </div>
     </div>
-    <button type="submit" mat-flat-button color="primary">Wyślij</button>
+    <button
+      type="submit"
+      class="candidate-send"
+      mat-flat-button
+      color="primary">
+      Wyślij
+    </button>
   </form>
+  <div class="job-offer-table">
+    <app-table
+      [tableData]="candidate.jobOffer"
+      [url]="'/job-offers'"
+      [editModeElement]="false"
+      [deleteModeElement]="false"
+      [columnHeader]="columnHeader"
+      [isPagination]="false"></app-table>
+  </div>
 </div>

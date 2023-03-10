@@ -2,3 +2,8 @@ table {
   height: 100%;
   width: 100%;
 }
+
+.mat-header-cell {
+  background: var(--table-header-bg-color);
+  color: var(--text-secondary-color);
+}

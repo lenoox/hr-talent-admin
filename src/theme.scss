@@ -1,6 +1,7 @@
 @use '@angular/material' as mat;
 @use 'sass:map';
 @import '@angular/material/theming';
+@import 'variables';
 @include mat.core();
 $blue-color-palette: (
   50: #e7eaf8,
@@ -86,6 +87,7 @@ $app-dark-theme: mat.define-dark-theme(
   --text-primary-color: #{mat.get-color-from-palette($app-white, 900)};
   --text-secondary-color: #{mat.get-color-from-palette($app-white, 100)};
   --login-bg-color: #{mat.get-color-from-palette($app-primary, 500)};
+  --table-header-bg-color: #{mat.get-color-from-palette($app-primary, 500)};
   --sidebar-bg-color: #{mat.get-color-from-palette($app-primary, 500)};
   --sidebar-btn-color: #{mat.get-color-from-palette($app-primary, A500)};
   @include mat.all-component-colors($app-light-theme);
@@ -96,6 +98,7 @@ $app-dark-theme: mat.define-dark-theme(
   --text-primary-color: #{mat.get-color-from-palette($app-white, 900)};
   --text-secondary-color: #{mat.get-color-from-palette($app-white, 50)};
   --login-bg-color: #{mat.get-color-from-palette($app-primary, 500)};
+  --table-header-bg-color: #{mat.get-color-from-palette($app-primary, 500)};
   --sidebar-bg-color: #{mat.get-color-from-palette($app-primary, 500)};
   --sidebar-btn-color: #{mat.get-color-from-palette($app-primary, A500)};
   @include mat.all-component-colors($app-dark-theme);

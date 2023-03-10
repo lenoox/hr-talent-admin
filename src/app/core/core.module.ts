@@ -7,19 +7,21 @@ import { DirectoryService } from './services/directory.service';
 import { NotificationService } from './services/notification.service';
 import { TokenInterceptor } from './interceptor/token-interceptor';
 
+const MODULES = [CommonModule, SidebarModule, HttpClientModule];
+const SERVICES = [
+  JobOfferService,
+  DirectoryService,
+  NotificationService,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true,
+  },
+];
 @NgModule({
   declarations: [],
-  imports: [CommonModule, SidebarModule, HttpClientModule],
-  exports: [SidebarModule],
-  providers: [
-    JobOfferService,
-    DirectoryService,
-    NotificationService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true,
-    },
-  ],
+  imports: [...MODULES],
+  exports: [...MODULES],
+  providers: [...SERVICES],
 })
 export class CoreModule {}

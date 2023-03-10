@@ -17,7 +17,9 @@ import { DirectoryState } from '../../../../core/state/directory/directory.state
 import { NotificationService } from '../../../../core/services/notification.service';
 import { jobOfferFormToReqest } from '../../../../shared/mappers/job-offer-mapper';
 import { compareWithId } from '../../../../core/utils/compare.utils';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-job-offer-edit',
   templateUrl: './job-offer-edit.component.html',
@@ -46,6 +48,7 @@ export class JobOfferEditComponent implements OnInit {
     this.jobOfferForm = this.getForm();
     this.routeId = this.route?.params
       .pipe(
+        untilDestroyed(this),
         switchMap(params => {
           if (params['state'] === 'edit' && params['id']) {
             this.isEditMode = true;

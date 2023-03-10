@@ -19,7 +19,6 @@ $sidebar-menu: $sidebar - ($sidebar-header + $sidebar-user);
 
 .sidebar-menu-item {
   background-color: var(--sidebar-btn-color);
-  border-radius: 0 20px 20px 0;
   box-sizing: border-box;
   height: 46px;
   margin: 10px;
@@ -31,6 +30,11 @@ $sidebar-menu: $sidebar - ($sidebar-header + $sidebar-user);
     font-size: 15px;
     font-weight: 300;
     text-decoration: none;
+  }
+
+  .menu-icon {
+    color: #fff;
+    padding-right: 10px;
   }
 
   .active {

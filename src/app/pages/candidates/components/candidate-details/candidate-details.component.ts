@@ -14,7 +14,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NotificationService } from '../../../../core/services/notification.service';
 import { Status } from '../../../../core/state/status';
 import { compareWithId } from '../../../../core/utils/compare.utils';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-candidate-details',
   templateUrl: './candidate-details.component.html',
@@ -27,7 +29,13 @@ export class CandidateDetailsComponent implements OnInit {
   candidateForm: any;
   candidateId: any;
   resumeUrl: string | undefined;
-
+  columnHeader = {
+    nr: 'Nr',
+    position: 'Tytuł oferty',
+    seniorities: 'Poziom doświadczenia',
+    locations: 'Lokalizaja',
+    actions: 'Akcja',
+  };
   constructor(
     private _formBuilder: FormBuilder,
     private store: Store,
@@ -40,6 +48,7 @@ export class CandidateDetailsComponent implements OnInit {
     this.candidateForm = this.getForm();
     this.route?.params
       .pipe(
+        untilDestroyed(this),
         switchMap((params: Params) => {
           this.candidateId = params['id'];
           return this.store.dispatch(new GetCandidate(this.candidateId));

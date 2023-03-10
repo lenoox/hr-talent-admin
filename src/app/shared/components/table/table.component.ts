@@ -9,9 +9,10 @@ import {
 } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { Observable, tap } from 'rxjs';
 import { Paginated } from '../../../core/state/paginated';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -27,11 +28,12 @@ export class TableComponent implements OnInit, AfterViewInit {
   @Output() currentPageChange = new EventEmitter<number>();
 
   @Input() columnHeader!: any;
-  @Input() tableData!: Observable<Paginated<any>>;
+  @Input() tableData!: Paginated<any> | any;
   @Output() pageChange = new EventEmitter();
   @Output() deleteChange = new EventEmitter<string>();
-
+  @Input() isPagination: boolean = true;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   pageSizeOptions: number[] = [5, 10, 25, 100];
   totalRows = 0;
   objectKeys = Object.keys;
@@ -48,18 +50,15 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   loadData() {
-    this.tableData
-      .pipe(
-        tap((data: any) => {
-          this.dataSource = new MatTableDataSource(data?.items);
-        })
-      )
-      .subscribe((data: any) => {
-        setTimeout(() => {
-          this.paginator.pageIndex = this.currentPage;
-          this.paginator.length = data?.meta?.totalItems;
-        });
+    this.dataSource = new MatTableDataSource(
+      this.isPagination ? this.tableData?.items : this.tableData
+    );
+    if (this.isPagination) {
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.tableData?.meta?.totalItems;
       });
+    }
   }
   pageChanged(event: PageEvent) {
     this.pageSize = event.pageSize;

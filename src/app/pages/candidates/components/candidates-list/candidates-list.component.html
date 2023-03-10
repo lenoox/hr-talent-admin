@@ -2,7 +2,7 @@
   [url]="'/candidates'"
   [editModeElement]="false"
   [deleteModeElement]="false"
-  [tableData]="candidates$"
+  [tableData]="candidates$ | async"
   [columnHeader]="columnHeader"
   [(currentPage)]="currentPage"
   [(pageSize)]="pageSize"

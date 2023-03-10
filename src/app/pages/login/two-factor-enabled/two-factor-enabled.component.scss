@@ -1,5 +1,11 @@
+@import url('src/variables');
+
 .two-factor {
   min-height: 200px;
+}
+
+.two-factor-input {
+  width: $width-login-input;
 }
 
 .generate-button {
@@ -7,12 +13,17 @@
 }
 
 .enabled2fa-button {
+  width: $width-login-input;
   margin-bottom: 20px;
 }
 
 .qr-code {
   display: block;
   height: 180px;
-  margin-bottom: 20px;
+  margin: 14px 0;
   width: 180px;
+}
+
+.qr-code-text {
+  margin: 4px 0 0;
 }
