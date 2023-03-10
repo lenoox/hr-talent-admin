@@ -10,5 +10,6 @@ module.exports = {
     'selector-max-compound-selectors': 5,
     'function-no-unknown': null,
     'no-invalid-position-at-import-rule': null,
+    'import-notation': 'string',
   },
 };
