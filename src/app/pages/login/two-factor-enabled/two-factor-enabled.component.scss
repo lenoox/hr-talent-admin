@@ -1,4 +1,4 @@
-@import url('src/variables');
+@import 'src/variables';
 
 .two-factor {
   min-height: 200px;
@@ -13,8 +13,8 @@
 }
 
 .enabled2fa-button {
-  width: $width-login-input;
   margin-bottom: 20px;
+  width: $width-login-input;
 }
 
 .qr-code {
