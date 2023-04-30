@@ -27,7 +27,7 @@ jobs:
       - name: 'Docker auth configuration'
         run: gcloud auth configure-docker
       - name: 'Build image'
-        run: docker build . --tag $IMAGE_URL
+        run: docker build --build-arg api_url="$API_URL" . --tag $IMAGE_URL
       - name: 'Docker push image'
         run: |-
           gcloud auth configure-docker $REPOSITRORY
@@ -36,5 +36,4 @@ jobs:
         run: |-
           gcloud compute instances update-container $APP_NAME \
           --zone $INSTANCE_ZONE \
-          --container-image $IMAGE_URL \
-          --container-env API_URL="$API_URL"
+          --container-image $IMAGE_URL

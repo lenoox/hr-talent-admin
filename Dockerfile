@@ -1,5 +1,7 @@
 FROM node:lts-bullseye-slim as build
 WORKDIR /app
+ARG api_url
+ENV API_URL=$api_url
 RUN npm install -g npm
 COPY package*.json ./
 RUN npm ci && npm cache clean --force
