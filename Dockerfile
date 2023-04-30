@@ -1,15 +1,8 @@
-FROM node:lts-bullseye-slim as development
-WORKDIR /app
-
-RUN npm install -g npm
-COPY package*.json ./
-RUN npm ci
-COPY . .
-
 FROM node:lts-bullseye-slim as build
 WORKDIR /app
+RUN npm install -g npm
 COPY package*.json ./
-COPY --from=development /app/node_modules ./node_modules
+RUN npm ci && npm cache clean --force
 COPY . .
 RUN npm run build
 
