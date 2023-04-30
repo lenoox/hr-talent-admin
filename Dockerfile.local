@@ -1,0 +1,7 @@
+FROM node:lts-bullseye-slim as development
+WORKDIR /app
+
+RUN npm install -g npm
+COPY package*.json ./
+RUN npm ci
+COPY . .

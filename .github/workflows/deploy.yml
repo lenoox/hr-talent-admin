@@ -36,4 +36,5 @@ jobs:
         run: |-
           gcloud compute instances update-container $APP_NAME \
           --zone $INSTANCE_ZONE \
-          --container-image $IMAGE_URL
+          --container-image $IMAGE_URL \
+          --container-env API_URL="$API_URL"

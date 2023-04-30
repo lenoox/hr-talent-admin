@@ -4,7 +4,7 @@ RUN npm install -g npm
 COPY package*.json ./
 RUN npm ci && npm cache clean --force
 COPY . .
-RUN npm run build
+RUN npm run build:prod
 
 FROM nginx:stable
 COPY --from=build /app/dist/hr-talent-admin /usr/share/nginx/html/
