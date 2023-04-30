@@ -10,6 +10,7 @@ RUN npm run build:prod
 
 FROM nginx:stable
 COPY --from=build /app/dist/hr-talent-admin /usr/share/nginx/html/
+COPY --from=build /app/certs /etc/ssl/
 COPY --from=build /app/default.conf /etc/nginx/conf.d/
 
 EXPOSE 80
