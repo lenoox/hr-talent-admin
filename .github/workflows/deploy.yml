@@ -12,6 +12,7 @@ jobs:
       INSTANCE_ZONE: ${{ secrets.INSTANCE_ZONE}}
       REPOSITRORY: ${{ secrets.REGION }}-docker.pkg.dev
       IMAGE_URL: ${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ secrets.APP_NAME }}/${{ secrets.APP_NAME }}:latest
+      API_URL: ${{ secrets.API_URL }}
     permissions:
       contents: 'read'
       id-token: 'write'
