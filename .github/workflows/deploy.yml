@@ -4,33 +4,37 @@ jobs:
   deploy:
     name: 'Deploy hr-talent-admin'
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/develop'
+    #if: github.ref == 'refs/heads/develop'
     env:
-      IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}:latest
       PROFILE_ACTIVE: prod
-      APP_NAME: ${{ secrets.GCP_APP_NAME }}
+      GCP_CREDENTIALS: '${{ secrets.GCP_CREDENTIALS }}'
+      APP_NAME: ${{ secrets.APP_NAME }}
+      INSTANCE_ZONE: ${{ secrets.INSTANCE_ZONE}}
+      REPOSITRORY: ${{ secrets.REGION }}-docker.pkg.dev
+      IMAGE_URL: ${{ secrets.REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ secrets.APP_NAME }}/${{ secrets.APP_NAME }}:latest
+      API_URL: ${{ secrets.API_URL }}
     permissions:
       contents: 'read'
       id-token: 'write'
     steps:
       - name: 'Checkout'
-        uses: 'actions/checkout@v2'
+        uses: actions/checkout@v3
       - name: 'Auth'
-        uses: 'google-github-actions/auth@v0'
+        uses: google-github-actions/auth@v0
         with:
           credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
       - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v0'
-      - name: 'Authorize Docker push'
-        run: 'gcloud auth configure-docker --quiet'
-      - name: 'Build Docker image'
-        run: 'docker build . -t $IMAGE_NAME'
-      - name: 'Test Docker image'
-        run: 'docker run -d -p 80:80 $IMAGE_NAME'
-      - name: 'Push Docker image'
-        run: 'docker push $IMAGE_NAME'
-      - name: Deploy
+        uses: google-github-actions/setup-gcloud@v0
+      - name: 'Docker auth configuration'
+        run: gcloud auth configure-docker
+      - name: 'Build image'
+        run: docker build --build-arg api_url="$API_URL" . --tag $IMAGE_URL
+      - name: 'Docker push image'
         run: |-
-          gcloud compute instances update-container ${{ secrets.GCP_APP_NAME }} \
-            --zone ${{ secrets.INSTANCE_ZONE}} \
-            --container-image $IMAGE_NAME
+          gcloud auth configure-docker $REPOSITRORY
+          docker push "$IMAGE_URL"
+      - name: 'Deploy project'
+        run: |-
+          gcloud compute instances update-container $APP_NAME \
+          --zone $INSTANCE_ZONE \
+          --container-image $IMAGE_URL
