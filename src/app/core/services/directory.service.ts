@@ -11,12 +11,12 @@ export class DirectoryService {
 
   fetchLocations() {
     return this.http.get<Location>(
-      `${environment.apiUrl}/directories/locations`
+      `${environment.apiUrl}/public/directories/locations`
     );
   }
   fetchSeniorities() {
     return this.http.get<Seniority>(
-      `${environment.apiUrl}/directories/seniorities`
+      `${environment.apiUrl}/public/directories/seniorities`
     );
   }
   fetchStatuses() {

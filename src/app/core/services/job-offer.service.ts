@@ -20,14 +20,14 @@ export class JobOfferService {
     const requestOptions = { params: params };
 
     return this.http.get<Paginated<JobOfferResponse>>(
-      `${environment.apiUrl}/job-offers`,
+      `${environment.apiUrl}/public/job-offers`,
       requestOptions
     );
   }
 
   public fetchJobOffer(id: string) {
     return this.http.get<JobOfferResponse>(
-      `${environment.apiUrl}/job-offers/${id}`
+      `${environment.apiUrl}/public/job-offers/${id}`
     );
   }
 
