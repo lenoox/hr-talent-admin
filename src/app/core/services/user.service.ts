@@ -7,6 +7,7 @@ import {
   UserResponse,
 } from '../state/user/user';
 import { environment } from '../../../environments/environment';
+
 const httpOptions = { withCredentials: true };
 @Injectable({
   providedIn: 'root',

@@ -12,6 +12,7 @@ import { JobOfferState } from './core/state/job-offer/job-offer.state';
 import { DirectoryState } from './core/state/directory/directory.state';
 import { UserState } from './core/state/user/user.state';
 import { CandidateState } from './core/state/candidate/candidate.state';
+
 const STATES = [JobOfferState, CandidateState, DirectoryState, UserState];
 const COMPONENTS = [AppComponent];
 const MODULES = [

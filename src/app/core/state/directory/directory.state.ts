@@ -2,15 +2,15 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { forkJoin, tap } from 'rxjs';
 import { GetDirectory } from './directory.action';
 import { Injectable } from '@angular/core';
-import { Seniority } from '../seniority';
-import { Location } from '../location';
+import { SeniorityDirectory } from '../../model/seniority';
+import { LocationDirectory } from '../../model/location';
 import { DirectoryService } from '../../services/directory.service';
-import { Status } from '../status';
+import { StatusDirectory } from '../../model/status';
 
 export class DirectoriesStateModel {
-  seniorities!: Seniority[];
-  locations!: Location[];
-  statuses!: Status[] | undefined;
+  seniorities: SeniorityDirectory[];
+  locations: LocationDirectory[];
+  statuses: StatusDirectory[] | undefined;
 }
 @State<DirectoriesStateModel>({
   name: 'directories',

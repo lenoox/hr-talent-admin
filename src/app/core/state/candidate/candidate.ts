@@ -1,5 +1,5 @@
-import { Location } from '../location';
-import { Status } from '../status';
+import { LocationDirectory } from '../../model/location';
+import { StatusDirectory } from '../../model/status';
 import { JobOfferResponse } from '../job-offer/job-offer';
 
 export interface CandidateResponse {
@@ -7,11 +7,11 @@ export interface CandidateResponse {
   name?: string;
   firstName: string;
   lastName: string;
-  locations: Location;
+  locations: LocationDirectory;
   position: string;
   attachment: string;
   aboutMe: string;
-  status: Status;
+  status: StatusDirectory;
   jobOffer: JobOfferResponse[];
 }
 

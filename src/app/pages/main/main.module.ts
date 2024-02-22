@@ -7,12 +7,14 @@ import { JobOffersModule } from '../job-offers/job-offers.module';
 import { CandidatesModule } from '../candidates/candidates.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterLinkWithHref, RouterOutlet } from '@angular/router';
+import { SharedModule } from '../../shared/shared.module';
 
 const COMPONENTS = [MainComponent];
 const MODULES = [
   CommonModule,
   MainRoutingModule,
   CoreModule,
+  SharedModule,
   MatSidenavModule,
   RouterOutlet,
   RouterLinkWithHref,

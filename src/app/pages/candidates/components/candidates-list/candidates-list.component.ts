@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { CandidateState } from '../../../../core/state/candidate/candidate.state';
 import { CandidateResponse } from '../../../../core/state/candidate/candidate';
-import { Paginated } from '../../../../core/state/paginated';
+import { Paginated } from '../../../../core/model/paginated';
 import { GetCandidates } from '../../../../core/state/candidate/candidate.action';
 
 @Component({
@@ -12,7 +12,7 @@ import { GetCandidates } from '../../../../core/state/candidate/candidate.action
   styleUrls: ['./candidates-list.component.scss'],
 })
 export class CandidatesListComponent implements OnInit {
-  @Select(CandidateState.getCandidateList) candidates$!: Observable<
+  @Select(CandidateState.getCandidateList) candidates$: Observable<
     Paginated<CandidateResponse[]>
   >;
   columnHeader = {

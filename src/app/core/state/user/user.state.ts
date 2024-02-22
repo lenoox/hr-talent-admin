@@ -1,5 +1,5 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { catchError, of, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {
   GetUser,
@@ -14,9 +14,9 @@ import { UserResponse } from './user';
 import { Router } from '@angular/router';
 
 export class UserStateModel {
-  user!: UserResponse | null;
-  loggedUser!: UserResponse | null;
-  isLogged!: boolean;
+  user: UserResponse | null;
+  loggedUser: UserResponse | null;
+  isLogged: boolean;
 }
 @State<UserStateModel>({
   name: 'user',

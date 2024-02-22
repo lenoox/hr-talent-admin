@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Paginated } from '../state/paginated';
+import { Paginated } from '../model/paginated';
 import {
   CandidateRequest,
   CandidateResponse,

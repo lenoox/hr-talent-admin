@@ -7,7 +7,7 @@ import {
   UpdateCandidate,
 } from './candidate.action';
 import { Injectable } from '@angular/core';
-import { Paginated } from '../paginated';
+import { Paginated } from '../../model/paginated';
 import { CandidateService } from '../../services/candidate.service';
 import { candidateToList } from '../../../shared/mappers/candidates-mapper';
 import {
@@ -16,8 +16,8 @@ import {
 } from '../../constants/pagination.const';
 
 export class CandidatesStateModel {
-  candidates!: Paginated<CandidateResponse> | undefined;
-  candidate!: CandidateResponse | undefined;
+  candidates: Paginated<CandidateResponse> | undefined;
+  candidate: CandidateResponse | undefined;
 }
 @State<CandidatesStateModel>({
   name: 'candidates',

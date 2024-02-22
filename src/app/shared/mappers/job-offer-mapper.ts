@@ -1,23 +1,23 @@
 import {
+  JobOfferForm,
   JobOfferRequest,
   JobOfferResponse,
 } from '../../core/state/job-offer/job-offer';
-import { Seniority } from '../../core/state/seniority';
-import { Location } from '../../core/state/location';
+import { LocationDirectory } from '../../core/model/location';
+import { SeniorityDirectory } from '../../core/model/seniority';
 
-export function jobOfferFormToReqest(
-  jobOfferResponse: JobOfferResponse
+export function jobOfferFormToRequest(
+  jobOfferForm: JobOfferForm
 ): JobOfferRequest {
-  const jobOffer = {
-    ...jobOfferResponse,
-    locations: jobOfferResponse.locations.map(
-      ({ id }: Partial<Location>) => id
+  return {
+    ...jobOfferForm,
+    locations: jobOfferForm.locations.map(
+      ({ id }: Partial<LocationDirectory>) => id
     ) as string[],
-    seniorities: jobOfferResponse.seniorities.map(
-      ({ id }: Partial<Seniority>) => id
+    seniorities: jobOfferForm.seniorities.map(
+      ({ id }: Partial<SeniorityDirectory>) => id
     ) as string[],
-  };
-  return jobOffer;
+  } as JobOfferRequest;
 }
 export function jobOfferToList(jobOfferResponse: JobOfferResponse): any {
   const jobOffer = {

@@ -7,7 +7,7 @@ import {
   DeleteJobOffer,
   GetJobOffers,
 } from '../../../../core/state/job-offer/job-offer.action';
-import { Paginated } from '../../../../core/state/paginated';
+import { Paginated } from '../../../../core/model/paginated';
 
 @Component({
   selector: 'app-job-offers-list',
@@ -15,7 +15,7 @@ import { Paginated } from '../../../../core/state/paginated';
   styleUrls: ['./job-offers-list.component.scss'],
 })
 export class JobOffersListComponent implements OnInit {
-  @Select(JobOfferState.getJobOfferList) jobOffers$!: Observable<
+  @Select(JobOfferState.getJobOfferList) jobOffers$: Observable<
     Paginated<JobOfferResponse[]>
   >;
   columnHeader = {

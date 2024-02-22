@@ -9,7 +9,7 @@ import { QuillConfiguration } from '../../../core/constants/quill-configuration'
 })
 export class TextEditorComponent implements OnInit {
   quillConfiguration = QuillConfiguration;
-  @Input() control!: FormControl;
+  @Input() control: FormControl;
   constructor() {}
 
   ngOnInit(): void {

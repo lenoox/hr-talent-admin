@@ -4,18 +4,17 @@
   </div>
   <div
     class="sidebar-menu flex flex-direction-column flex-align-center flex-justify-start">
-    <div class="sidebar-menu-item flex flex-align-center">
-      <mat-icon class="menu-icon">people_outline</mat-icon>
-      <a routerLinkActive="active" routerLink="candidates">Kandydaci</a>
-    </div>
-    <div class="sidebar-menu-item flex flex-align-center">
-      <mat-icon class="menu-icon">manage_search</mat-icon>
-      <a routerLinkActive="active" routerLink="job-offers">Oferty pracy</a>
-    </div>
-    <div class="sidebar-menu-item flex flex-align-center">
-      <mat-icon class="menu-icon">info_outline</mat-icon>
-      <a routerLinkActive="active" routerLink="about">O aplikacji</a>
-    </div>
+    <ng-container *ngFor="let menuItem of menuItems">
+      <div class="sidebar-menu-item flex flex-align-center">
+        <mat-icon class="menu-icon">{{ menuItem.icon }}</mat-icon>
+        <a
+          routerLinkActive="active"
+          [class]="menuItem.class"
+          [routerLink]="menuItem.routerLink">
+          {{ menuItem.label }}
+        </a>
+      </div>
+    </ng-container>
   </div>
   <div class="flex flex-justify-center">
     <div class="sidebar-user flex flex-align-center">

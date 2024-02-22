@@ -1,5 +1,6 @@
+{{ columnHeader | json }}
 <div class="mat-elevation-z0">
-  <table mat-table [dataSource]="dataSource">
+  <table class="table" mat-table [dataSource]="dataSource">
     <ng-container
       [matColumnDef]="tableData"
       *ngFor="let tableData of objectKeys(columnHeader)">
@@ -60,6 +61,7 @@
                 <span>Edytuj</span>
               </button>
               <button
+                class="delete"
                 *ngIf="deleteModeElement"
                 (click)="delete(element.id)"
                 mat-menu-item>
@@ -84,7 +86,6 @@
     <tr mat-row *matRowDef="let row; columns: objectKeys(columnHeader)"></tr>
   </table>
   <mat-paginator
-    *ngIf="isPagination"
     #paginator
     [length]="totalRows"
     [pageIndex]="currentPage"

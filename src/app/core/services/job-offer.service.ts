@@ -4,7 +4,7 @@ import {
   JobOfferRequest,
   JobOfferResponse,
 } from '../state/job-offer/job-offer';
-import { Paginated } from '../state/paginated';
+import { Paginated } from '../model/paginated';
 import { environment } from '../../../environments/environment';
 
 @Injectable({

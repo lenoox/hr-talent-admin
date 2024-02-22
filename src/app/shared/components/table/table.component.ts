@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { Paginated } from '../../../core/state/paginated';
+import { Paginated } from '../../../core/model/paginated';
 import { UntilDestroy } from '@ngneat/until-destroy';
 
 @UntilDestroy()
@@ -20,25 +20,25 @@ import { UntilDestroy } from '@ngneat/until-destroy';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit, OnChanges {
-  @Input() url!: string;
-  @Input() editModeElement!: boolean;
-  @Input() deleteModeElement!: boolean;
-  @Input() pageSize!: number;
+  @Input() url: string;
+  @Input() editModeElement: boolean;
+  @Input() deleteModeElement: boolean;
+  @Input() pageSize: number;
   @Output() pageSizeChange = new EventEmitter<number>();
-  @Input() currentPage!: number;
+  @Input() currentPage: number;
   @Output() currentPageChange = new EventEmitter<number>();
 
-  @Input() columnHeader!: any;
-  @Input() tableData!: Paginated<any> | any;
+  @Input() columnHeader: any;
+  @Input() tableData: Paginated<any> | any;
   @Output() pageChange = new EventEmitter();
   @Output() deleteChange = new EventEmitter<string>();
   @Input() isPagination: boolean = true;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   pageSizeOptions: number[] = [5, 10, 25, 100];
   totalRows = 0;
   objectKeys = Object.keys;
-  dataSource!: MatTableDataSource<any>;
+  dataSource: MatTableDataSource<any>;
 
   constructor() {}
 
@@ -47,7 +47,7 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const tableDate = changes['tableData']?.currentValue;
+    const tableDate = this.tableData;
     if (tableDate) {
       this.dataSource = new MatTableDataSource(
         this.isPagination ? tableDate?.items : tableDate
@@ -55,6 +55,7 @@ export class TableComponent implements OnInit, OnChanges {
       if (this.isPagination && this.paginator) {
         this.paginator.pageIndex = this.currentPage;
         this.paginator.length = this.tableData?.meta?.totalItems;
+        this.dataSource.paginator = this.paginator;
       }
     }
   }

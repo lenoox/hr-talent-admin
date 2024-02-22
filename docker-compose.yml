@@ -1,5 +1,6 @@
 services:
-  www:
+  admin-www:
+    container_name: hr-talent-admin-www
     build:
       dockerfile: Dockerfile.local
       context: .

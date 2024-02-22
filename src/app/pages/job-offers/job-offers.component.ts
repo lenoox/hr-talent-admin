@@ -9,7 +9,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
   styleUrls: ['./job-offers.component.scss'],
 })
 export class JobOffersComponent {
-  public isRoute!: boolean;
+  public isRoute: boolean;
 
   constructor(private router: Router) {
     router.events.pipe(untilDestroyed(this)).subscribe(val => {

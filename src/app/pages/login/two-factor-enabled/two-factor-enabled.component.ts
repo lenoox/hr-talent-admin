@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService } from '../../../core/services/user.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { TurnOn2faRequest } from '../../../core/state/user/user';

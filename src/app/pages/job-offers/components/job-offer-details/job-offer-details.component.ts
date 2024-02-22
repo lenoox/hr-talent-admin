@@ -13,10 +13,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class JobOfferDetailsComponent implements OnInit {
   @Select(JobOfferState.getJobOffer)
-  jobOffer$!: Observable<JobOfferResponse>;
+  jobOffer$: Observable<JobOfferResponse>;
 
-  jobOffer!: JobOfferResponse;
-  routeId!: Subscription;
+  jobOffer: JobOfferResponse;
+  routeId: Subscription;
   jobOfferForm: any;
 
   constructor(private store: Store, private route: ActivatedRoute) {}

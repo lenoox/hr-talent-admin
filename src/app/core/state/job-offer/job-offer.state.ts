@@ -10,7 +10,7 @@ import {
   UpdateJobOffer,
 } from './job-offer.action';
 import { Injectable } from '@angular/core';
-import { Paginated } from '../paginated';
+import { Paginated } from '../../model/paginated';
 import { jobOfferToList } from '../../../shared/mappers/job-offer-mapper';
 import {
   currentPageDefault,
@@ -18,8 +18,8 @@ import {
 } from '../../constants/pagination.const';
 
 export class JobOffersStateModel {
-  jobOffers!: Paginated<JobOfferResponse> | undefined;
-  jobOffer!: JobOfferResponse | undefined;
+  jobOffers: Paginated<JobOfferResponse> | undefined;
+  jobOffer: JobOfferResponse | undefined;
 }
 @State<JobOffersStateModel>({
   name: 'jobOffers',
@@ -116,7 +116,7 @@ export class JobOfferState {
     return this.jobOffer.updateJobOffer(payload, id).pipe(
       tap(result => {
         const state = getState();
-        const jobOffers = state.jobOffers!.items.map(result =>
+        const jobOffers = state.jobOffers.items.map(result =>
           jobOfferToList(result)
         );
         const jobOfferList = [...jobOffers];
@@ -126,7 +126,7 @@ export class JobOfferState {
           ...state,
           jobOffers: {
             items: jobOfferList,
-            meta: state.jobOffers!.meta,
+            meta: state.jobOffers.meta,
           },
         });
       })

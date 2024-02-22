@@ -15,19 +15,18 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 })
 export class CandidatesComponent implements OnInit {
   @Select(CandidateState.getCandidate)
-  candidate$!: Observable<CandidateResponse>;
-  public isRoute!: boolean;
+  candidate$: Observable<CandidateResponse>;
+  public isRoute: boolean;
   public resumeUrl: string | undefined;
 
-  constructor(private router: Router) {
-    router.events.pipe(untilDestroyed(this)).subscribe(val => {
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.router.events.pipe(untilDestroyed(this)).subscribe(val => {
       if (val instanceof NavigationEnd) {
         this.isRoute = val.url.indexOf('/candidates/detail') == 0;
       }
     });
-  }
-
-  ngOnInit(): void {
     this.candidate$.pipe(untilDestroyed(this)).subscribe(candidateResponse => {
       const pathFile = `${environment.apiUrl}/candidates/file/${candidateResponse?.attachment}`;
       this.resumeUrl = candidateResponse?.attachment ? pathFile : undefined;

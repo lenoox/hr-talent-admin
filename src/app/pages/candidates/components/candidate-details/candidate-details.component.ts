@@ -12,7 +12,7 @@ import { DirectoryState } from '../../../../core/state/directory/directory.state
 import { candidateFormToReqest } from '../../../../shared/mappers/candidates-mapper';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NotificationService } from '../../../../core/services/notification.service';
-import { Status } from '../../../../core/state/status';
+import { StatusDirectory } from '../../../../core/model/status';
 import { compareWithId } from '../../../../core/utils/compare.utils';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
@@ -23,9 +23,9 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
   styleUrls: ['./candidate-details.component.scss'],
 })
 export class CandidateDetailsComponent implements OnInit {
-  @Select(DirectoryState.getStatuses) statuses$!: Observable<Status[]>;
+  @Select(DirectoryState.getStatuses) statuses$: Observable<StatusDirectory[]>;
   @Select(CandidateState.getCandidate)
-  candidate$!: Observable<CandidateResponse>;
+  candidate$: Observable<CandidateResponse>;
   candidateForm: any;
   candidateId: any;
   resumeUrl: string | undefined;

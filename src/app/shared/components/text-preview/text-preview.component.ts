@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-text-preview',
@@ -7,6 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TextPreviewComponent {
   @Input()
-  description!: string;
+  description: string;
   constructor() {}
 }

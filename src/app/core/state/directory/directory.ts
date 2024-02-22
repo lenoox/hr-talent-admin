@@ -1,7 +1,7 @@
-import { Location } from '../location';
-import { Seniority } from '../seniority';
+import { LocationDirectory } from '../../model/location';
+import { SeniorityDirectory } from '../../model/seniority';
 
 export interface Directory {
-  seniorities: Seniority[];
-  locations: Location[];
+  seniorities: SeniorityDirectory[];
+  locations: LocationDirectory[];
 }

@@ -1,8 +1,8 @@
 <app-table
-  [tableData]="jobOffers$ | async"
   [url]="'/job-offers'"
   [editModeElement]="true"
   [deleteModeElement]="true"
+  [tableData]="jobOffers$ | async"
   [columnHeader]="columnHeader"
   [(currentPage)]="currentPage"
   [(pageSize)]="pageSize"
