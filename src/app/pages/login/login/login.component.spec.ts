@@ -31,7 +31,7 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('Validation email and password if both is correct', () => {
+  it('should validate email and password if both are correct', () => {
     const emailControl = component.userForm.get('email');
     const passwordControl = component.userForm.get('password');
     emailControl.setValue('jan.kowalski@local');

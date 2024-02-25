@@ -20,7 +20,7 @@ describe('PageContainerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should display the correct title', () => {
+  it('should display correct title', () => {
     component.title = 'O aplikacji';
     fixture.detectChanges();
     const titleElement = fixture.debugElement.query(

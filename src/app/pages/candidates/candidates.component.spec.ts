@@ -54,7 +54,7 @@ describe('CandidatesComponent', async () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set isRoute to true when navigating to /candidates/detail', () => {
+  it('should set "isRoute" to true when navigating to candidates details', () => {
     store.reset({
       ...store.snapshot(),
       candidates: {

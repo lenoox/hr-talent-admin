@@ -72,7 +72,7 @@ describe('SidebarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should contain logo', () => {
+  it('should contain a logo', () => {
     const logoElement = fixture.nativeElement.querySelector(
       '.sidebar-header img'
     );

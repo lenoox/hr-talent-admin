@@ -66,7 +66,7 @@ describe('TableComponent', () => {
 
     fixture.detectChanges();
   });
-  it('should has correct rows', () => {
+  it('should have correct rows', () => {
     de = fixture.debugElement;
     const rowDebugElements = de.query(By.css('.table'));
     expect(rowDebugElements).toBeTruthy();
